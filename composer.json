@@ -1,0 +1,20 @@
+{
+    "name": "pkhanh/base",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Khanh Pham",
+            "email": "105581919+QuyKhanh03@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "phroute/phroute": "^2.2",
+        "illuminate/events": "^10.3",
+        "eftec/bladeone": "^4.8",
+        "phpmailer/phpmailer": "^6.8"
+    }
+}

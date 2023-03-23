@@ -1,0 +1,34 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <div class="row">
+ <div class="col-xl-12 col-lg-12 col-md-12">
+ <div class="card chart-card">
+ <div class="card-header">
+ <h4 class="has-btn">Total Revanue </h4>
+ </div>
+ <div class="card-body">
+ <div class="row">
+ <form action="" method="POST">
+ <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+ <div class="form-group">
+ <label class="col-md-2 col-form-label">Username</label>
+ <div class="col-md-10">
+ <input class="form-control" type="text" placeholder="Jenny">
+ </div>
+ </div>
+ <div class="form-group">
+ <label class="col-md-2 col-form-label">Username</label>
+ <div class="col-md-10">
+ <input class="form-control" type="text" placeholder="Jenny">
+ </div>
+ </div>
+ </div>
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('templates.layout'); } ?>

@@ -1,0 +1,79 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<div class="row">
+ <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+ <div class="page-title-wrapper">
+ <div class="page-title-box ad-title-box-use">
+ <h4 class="page-title">Danh sách sản phẩm</h4>
+ </div>
+ <div class="ad-breadcrumb">
+ <ul>
+ 
+ <li>
+ <div class="add-group">
+ <a href="add-product" style="text-decoration: none" class="ad-btn">Thêm mới sản phẩm</a>
+ </div>
+ </li>
+ </ul>
+ </div>
+ </div>
+ </div>
+</div>
+<div class="row">
+ <!-- Styled Table Card-->
+ <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+ <div class="card table-card">
+ <div class="card-header pb-0">
+ <h4>Danh sách sản phẩm</h4>
+ <?php if(isset($_SESSION["success"]) && isset($_GET["msg"])): ?>
+ <div class="alert alert-success mt-4">
+ <strong><?php echo \htmlentities($_SESSION["success"]??'', ENT_QUOTES, 'UTF-8', false); ?> !!!</strong> 
+ </div>
+ <?php endif; ?>
+ </div>
+ 
+ <div class="card-body">
+ <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th>Tên sản phẩm</th>
+ <th>Đơn giá</th>
+ <th>Ảnh sản phẩm</th>
+ <th>Mô tả ngắn</th>
+ <th>Mô tả chi tiết</th>
+ <th>Tồn kho</th> 
+ <?php /* <th>Ngày Nhập</th>    */ ?>
+ <th>Danh mục</th>
+ <th>Chức năng</th>
+ 
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $listProduct; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $value): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities(++$key??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td ><b style="width: 50px; "><?php echo \htmlentities($value->name_product??'', ENT_QUOTES, 'UTF-8', false); ?></b></td>
+ <td ><?php echo \htmlentities(number_format($value->price_product)??'', ENT_QUOTES, 'UTF-8', false); ?> <br> <b>VNĐ</b></td>
+ <td><img style="width: 110px; height: 110px;" src="../public/img/product/<?php echo \htmlentities($value->image??'', ENT_QUOTES, 'UTF-8', false); ?>" alt=""></td>
+ <td><p style="width: 150px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis"><?php echo \htmlentities($value->short_description??'', ENT_QUOTES, 'UTF-8', false); ?></p></td>
+ <td><p style="width: 150px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis"><?php echo \htmlentities($value->detail_description??'', ENT_QUOTES, 'UTF-8', false); ?></p></td>
+ <td><?php echo \htmlentities($value->quantity_total??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php /* <td><?php echo \htmlentities(date("d-m-Y",strtotime($value->date_added))??'', ENT_QUOTES, 'UTF-8', false); ?></td> */ ?>
+ <td style="width: 90px;"><?php echo \htmlentities($value->name_category??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <a href="" class="btn btn-info">Xem</a> <br>
+ <a href="" class="btn btn-danger">Xóa</a> <br>
+ <a href="<?php echo \htmlentities(router('edit/'.$value->id_product)??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn btn-success">Sửa</a>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </div>
+ </div>
+ </div>
+</div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('templates.layout'); } ?>

@@ -1,0 +1,12 @@
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/fonts.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/bootstrap.min.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/font-awesome.min.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/icofont.min.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/style.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<link rel="stylesheet" id="theme-change" type="text/css" href="#">
+<!-- Favicon Link -->
+<link rel="shortcut icon" type="image/png" href="<?php echo \htmlentities(router('public/assets/images/favicon.png')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+<?php /* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> */ ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo \htmlentities(router('./public/assets/css/datatables.css')??'', ENT_QUOTES, 'UTF-8', false); ?>">
+
