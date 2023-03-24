@@ -19,7 +19,9 @@
         public function index() {
             $listCategory = $this->home->getCategories();
             $topProduct = $this->home->get8ProductNew();
-            $this->render("home.index",compact('listCategory','topProduct'));
+            $title = "Broccoli - Phạm Ngọc Khánh";
+            $title_banner = "Thực phẩm hữu cơ ngon và tốt cho sức khỏe";
+            $this->render("home.index",compact('listCategory','topProduct','title','title_banner'));
             
         
             

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Broccoli - Organic Food HTML Template</title>
+    <title>{{ $title }}</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,8 +30,8 @@
                     <div class="col-md-7">
                         <div class="ltn__top-bar-menu">
                             <ul>
-                                <li><a href="locations.html"><i class="icon-placeholder"></i> 15/A, Nest Tower, NYC</a></li>
-                                <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> info@webmail.com</a></li>
+                                <li><a href="locations.html"><i class="icon-placeholder"></i>Mỹ Đình 2, Hà Nội</a></li>
+                                <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i>phamngockhanh29703@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                             @endphp
                                             <ul>
                                                 @foreach ($listCategories as $key => $value)
-                                                <li><a href="shop.html">{{ $value->name_category }}</a></li>
+                                                <li><a href="{{ url('category/'.$value->id_category) }}">{{ $value->name_category }}</a></li>
                                                 @endforeach    
                                             </ul>
                                         </li>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="header-search-1-form">
-                                <form id="#" method="get"  action="#">
+                                <form  method="get"  action="">
                                     <input type="text" name="search" value="" placeholder="Search here..."/>
                                     <button type="submit">
                                         <span><i class="icon-search"></i></span>
@@ -277,32 +277,10 @@
                         </ul> --}}
                     </li>
                     <li><a href="#">News</a>
-                        {{-- <ul class="sub-menu">
-                            <li><a href="blog.html">News</a></li>
-                            <li><a href="blog-grid.html">News Grid</a></li>
-                            <li><a href="blog-left-sidebar.html">News Left sidebar</a></li>
-                            <li><a href="blog-right-sidebar.html">News Right sidebar</a></li>
-                            <li><a href="blog-details.html">News details</a></li>
-                        </ul> --}}
+                        
                     </li>
                     <li><a href="#">Pages</a>
-                        {{-- <ul class="sub-menu">
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="service.html">Services</a></li>
-                            <li><a href="service-details.html">Service Details</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="portfolio-2.html">Portfolio - 02</a></li>
-                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="team-details.html">Team Details</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="history.html">History</a></li>
-                            <li><a href="contact.html">Appointment</a></li>
-                            <li><a href="locations.html">Google Map Locations</a></li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                        </ul> --}}
+                        
                     </li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -368,15 +346,14 @@
                                                  </a>
                                              </div>
                                              <h6 class="slide-sub-title animated"><img src="{{url('public/img/icons/icon-img/1.png')}}"
-                                                     alt="#"> 100% genuine Products</h6>
-                                             <h1 class="slide-title animated ">Tasty & Healthy <br> Organic Food</h1>
+                                                     alt="#"> 100% Từ sản phẩm tự nhiên</h6>
+                                             <h1 class="slide-title animated ">{{ $title_banner == "" ? "Thực phẩm tốt cho sức khỏe" : $title_banner }}</h1>
                                              <div class="slide-brief animated d-none">
                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                                      tempor incididunt ut labore.</p>
                                              </div>
                                              <div class="btn-wrapper animated">
-                                                 <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Explore
-                                                     Products</a>
+                                                 <a href="{{ url('products') }}" class="theme-btn-1 btn btn-effect-1 text-uppercase">Khám phá sản phẩm</a>
                                              </div>
                                          </div>
                                      </div>

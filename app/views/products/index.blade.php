@@ -2,6 +2,7 @@
 
 
 @section('content')
+    {{-- <h1>{{ $max_page }}</h1> --}}
     <!-- PRODUCT DETAILS AREA START -->
     <div class="ltn__product-area ltn__product-gutter mb-120 mt-5 pt-5">
         <div class="container">
@@ -391,7 +392,18 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <div class="ltn__pagination-area text-center">
+                        <div class="ltn__pagination">
+                            <ul>
+                                {{-- <li><a href="#"><i class="fas fa-angle-double-left"></i></a></li> --}}
+                                <li><a href="{{ url('products') }}">1</a></li>
+                                <li ><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>   
+                                <li><a href="#">4</a></li>
+                                {{-- <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li> --}}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

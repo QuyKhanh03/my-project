@@ -26,9 +26,16 @@ $router->get("/",[App\Controllers\HomeController::class, 'index']);
 $router->get("product/{id}",[App\Controllers\ProductController::class, 'productDetail']);
 
 //products 
-$router->get("products",[App\Controllers\ProductController::class, 'index']);
 
+// $router->get("products/{id}",[App\Controllers\ProductController::class, 'index']);
+$router->get("products",function() {
+    $product = new App\Controllers\ProductController();
+    return $product->index();
+});
+// $router->get("products",[App\Controllers\ProductController::class, 'page']);
 
+//category
+$router->get("category/{id}",[App\Controllers\CategoryController::class, 'categoryDetail']);
 
 //end
 
