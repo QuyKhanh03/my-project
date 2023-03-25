@@ -445,7 +445,7 @@
                         <ul>
                             @foreach ($categories as $value )
                                 
-                            <li><a href="#">{{ $value->name_category }} <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                            <li ><a href="{{ url('category/'.$value->id_category) }}">{{ $value->name_category }} <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
                             @endforeach
                         </ul>
                     </div>

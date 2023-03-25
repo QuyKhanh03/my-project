@@ -1,5 +1,11 @@
 @extends('templates.layout')
 @section('content')
+
+@if(isset($_SESSION["success"]) && isset($_GET["msg"]))
+    <div class="alert alert-success mt-4">
+        <strong>{{ $_SESSION["success"] }} !!!</strong> 
+    </div>
+@endif
 <!-- Container Start -->
         <!-- Page Title Start -->
         <div class="row">

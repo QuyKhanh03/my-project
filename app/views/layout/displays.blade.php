@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-<!-- Mirrored from tunatheme.com/tf/html/broccoli-preview/broccoli/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 09 Dec 2022 10:54:36 GMT -->
+{{-- Phạm Ngọc Khánh --}}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -95,7 +95,7 @@
                                     <ul>
                                         <li class="menu-icon"><a href="{{ url('') }}">Trang chủ</a>
                                         </li>
-                                        <li class="menu-icon"><a href="products">Sản Phẩm</a>
+                                        <li class="menu-icon"><a href="{{ url('products') }}">Sản Phẩm</a>
                                             @php 
                                                 use App\Controllers\HomeController;
                                                 $listCategories = HomeController::Categories();
@@ -146,10 +146,10 @@
                                 <li>
                                     <a href="#"><i class="icon-user"></i></a>
                                     <ul>
-                                        <li><a href="login.html">Sign in</a></li>
-                                        <li><a href="register.html">Register</a></li>
-                                        <li><a href="account.html">My Account</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                        <li><a href="{{ url('login') }}">Đăng nhập</a></li>
+                                        <li><a href="{{ url('register') }}">Đăng Ký</a></li>
+                                        <li><a href="account.html">Tài Khoản</a></li>
+                                        <li><a href="wishlist.html">Yêu Thích</a></li>
                                     </ul>
                                 </li>
                             </ul>

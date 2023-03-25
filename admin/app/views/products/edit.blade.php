@@ -39,11 +39,16 @@
                                         @if(isset($_SESSION["errors"]))
                                         <p style="color: red">{{ $_SESSION["errors"]["image"] }}</p>
                                         @endif
+                                        <label for=""class="col-md-4 col-form-label">Hoặc giữ lại ảnh cũ</label>
+                                        <input type="hidden" name="image_old" value="{{ $product->image }}"> <br>
+                                        <img style="width: 120px; height: 120px;" src="{{ router('../public/img/product/') }}{{ $product->image }}" alt="">
                                     </div>
+                                    
                                     <div class="form-group col">
                                         <label class="col-md-4 col-form-label">Mô tả ngắn</label>
                                         <div class="col-md-10">
-                                            <input value="{{ $product->short_description }}" name="short_description" class="form-control" type="text" placeholder="Mô tả ngắn">
+                                            
+                                            <textarea class="form-control"  name="short_description" id="" cols="63" rows="7">{{ $product->short_description }}</textarea>
                                         </div>
                                         @if(isset($_SESSION["errors"]))
                                         <p style="color: red">{{ $_SESSION["errors"]["short_description"] }}</p>
@@ -54,7 +59,9 @@
                                     <div class="form-group col">
                                         <label class="col-md-2 col-form-label">Mô tả chi tiết</label>
                                         <div class="col-md-10">
-                                            <input name="detail_description" value="{{ $product->detail_description }}" class="form-control" type="text" placeholder="Mô tả chi tiết">
+
+                                            <textarea class="form-control"  name="detail_description" id="" cols="63" rows="7">{{ $product->detail_description }}</textarea>
+                                            {{-- <input   class="form-control" type="text" placeholder="Mô tả chi tiết"> --}}
                                         </div>
                                         @if(isset($_SESSION["errors"]))
                                         <p style="color: red">{{ $_SESSION["errors"]["detail_description"] }}</p>
@@ -105,7 +112,7 @@
                                     </div>
                                     {{-- <input type="text" value="{{  }}"> --}}
                                 </div>
-                                <button name="btn" type="submit" class="btn btn-primary ">Thêm</button>
+                                <button name="btn" type="submit" class="btn btn-primary ">Cập nhật</button>
                             </div>
                         </form>
                     </div>

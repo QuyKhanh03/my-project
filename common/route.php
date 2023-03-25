@@ -27,16 +27,14 @@ $router->get("product/{id}",[App\Controllers\ProductController::class, 'productD
 
 //products 
 
-// $router->get("products/{id}",[App\Controllers\ProductController::class, 'index']);
-$router->get("products",function() {
-    $product = new App\Controllers\ProductController();
-    return $product->index();
-});
-// $router->get("products",[App\Controllers\ProductController::class, 'page']);
-
+$router->get("products",[App\Controllers\ProductController::class, 'index']);
 //category
 $router->get("category/{id}",[App\Controllers\CategoryController::class, 'categoryDetail']);
 
+
+//account
+$router->get("login",[App\Controllers\UserController::class, 'index']);
+$router->get("register",[App\Controllers\UserController::class, 'register']);
 //end
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains

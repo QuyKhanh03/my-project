@@ -21,15 +21,29 @@ $router->filter('auth', function(){
 
 //home page
 $router->get("/",[App\Controllers\HomeController::class, 'index']);
+
+
+//product start
 $router->get("products",[App\Controllers\ProductController::class, 'index']);
-$router->get("login",[App\Controllers\HomeController::class, 'login']);
 $router->get("add-product",[App\Controllers\ProductController::class, 'showFormAdd']);
 $router->post("add-product-post",[App\Controllers\ProductController::class,"formAddPost"]);
-
-$router->get("edit/{id}",[App\Controllers\ProductController::class, 'showFormEdit']);
+$router->get("delete-product/{id}",[App\Controllers\ProductController::class, 'removeProduct']);
+$router->get("edit-product/{id}",[App\Controllers\ProductController::class, 'showFormEdit']);
 $router->post("edit-product-post/{id}",[App\Controllers\ProductController::class, 'formEditPost']);
 //end
+//category start
+$router->get("categories",[App\Controllers\CategoryController::class, 'index']);
+$router->get("add-category",[App\Controllers\CategoryController::class, 'showFormAdd']);
+$router->post("add-category-post",[App\Controllers\CategoryController::class, 'formAddPost']);
+$router->get("edit-category/{id}",[App\Controllers\CategoryController::class, 'showFormEdit']);
+$router->post("edit-category-post/{id}",[App\Controllers\CategoryController::class, 'formEditPost']);
+$router->get("delete-category/{id}",[App\Controllers\CategoryController::class, 'removeCategory']);
+//end
+//user start
 
+$router->get("login",[App\Controllers\UserController::class, 'showFormLogin']);
+$router->post("login-post",[App\Controllers\UserController::class,'loginPost']);
+//end
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

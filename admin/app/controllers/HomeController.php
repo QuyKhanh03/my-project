@@ -9,18 +9,19 @@ class HomeController extends BaseController {
         $this->home = new Home();
     }
     public function index() {
-        $totalWeek = $this->home->getTotalWeekly();
-        $totalMonth = $this->home->getTotalMonthly();
-        $totalYear = $this->home->getTotalYearly();
-        $customerMonth = $this->home->getCustomerMonthly();
-        $customerWeek = $this->home->getCustomerWeekly();
-        $customerYear = $this->home->getCustomerYearly();
-        $this->render("home.index",compact("totalMonth","totalWeek","totalYear","customerMonth","customerWeek","customerYear"));
+        if(isset($_SESSION["admin"])) {
+            $totalWeek = $this->home->getTotalWeekly();
+            $totalMonth = $this->home->getTotalMonthly();
+            $totalYear = $this->home->getTotalYearly();
+            $customerMonth = $this->home->getCustomerMonthly();
+            $customerWeek = $this->home->getCustomerWeekly();
+            $customerYear = $this->home->getCustomerYearly();
+            $this->render("home.index",compact("totalMonth","totalWeek","totalYear","customerMonth","customerWeek","customerYear"));
+        }else {
+            redirect("","","login");
+        }
     }
 
    
 
-    public function login() {
-        $this->render("login.index");
-    }
 }

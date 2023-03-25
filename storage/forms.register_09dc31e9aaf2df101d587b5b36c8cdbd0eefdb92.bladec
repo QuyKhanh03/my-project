@@ -1,0 +1,34 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<div class="ltn__login-area pb-110 mt-5 pt-5">
+ <div class="container">
+ <div class="row">
+ <div class="col-lg-12">
+ <div class="section-title-area text-center">
+ <h1 class="section-title">Đăng Ký <br>Tài Khoản Của Bạn</h1>
+ <?php /* <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
+ Sit aliquid,  Non distinctio vel iste.</p> */ ?>
+ </div>
+ </div>
+ </div>
+ <div class="row">
+ <div class="col-lg-6 offset-lg-3">
+ <div class="account-login-inner">
+ <form action="#" class="ltn__form-box contact-form-box">
+ <input type="text" placeholder="Họ Tên">
+ <input type="text" name="email" placeholder="Email*">
+ <input type="password" name="password" placeholder="Mật Khẩu*">
+ <input type="password" name="confirmpassword" placeholder="Nhập Lại Mật Khẩu*">
+ 
+ <div class="btn-wrapper">
+ <button class="theme-btn-1 btn reverse-color btn-block" type="submit">Đăng Ký</button>
+ </div>
+ </form>
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.displays'); } ?>

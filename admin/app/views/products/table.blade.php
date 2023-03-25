@@ -63,8 +63,8 @@
                             <td style="width: 90px;">{{ $value->name_category }}</td>
                             <td>
                                 <a href="" class="btn btn-info">Xem</a> <br>
-                                <a href="" class="btn btn-danger">Xóa</a> <br>
-                                <a href="{{ router('edit/'.$value->id_product) }}" class="btn btn-success">Sửa</a>
+                                <a href="{{ router('delete-product/'.$value->id_product) }}" class="btn btn-danger">Xóa</a> <br>
+                                <a href="{{ router('edit-product/'.$value->id_product) }}" class="btn btn-success">Sửa</a>
                             </td>
                         </tr>
                         @endforeach

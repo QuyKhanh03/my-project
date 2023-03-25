@@ -38,7 +38,22 @@ class Product extends BaseModel {
         $this->setQuery($sql);
         return $this->loadRow(array($id));
     }
-
+    // create function update product
+    public function updateProduct($id,$name_product, $price_product, $image, $short_description, $detail_description,$quantity_total, $sale_off, $category_id) {
+        $sql = "UPDATE $this->product SET 
+        `name_product` = ?,
+        `price_product` = ?,
+        `image` = ?,
+        `short_description` = ?,
+        `detail_description` = ?,
+        `quantity_total` = ?,
+        `sale_off` = ?,
+        `category_id` = ?
+        WHERE id_product = ?";
+        $this->setQuery($sql);
+        return $this->execute(array($name_product, $price_product, $image, $short_description, $detail_description,$quantity_total, $sale_off, $category_id,$id));
+    }
+    
 }
 
 

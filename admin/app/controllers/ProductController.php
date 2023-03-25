@@ -69,4 +69,62 @@ class ProductController extends BaseController {
         $product = $this->products->getProduct($id);
         $this->render("products.edit",compact('product','categories'));
     }
+    public function formEditPost($id) {
+        $errors = [];
+        if(isset($_POST["btn"])) {
+            $name_product = $_POST["name_product"];
+            $price_product = $_POST["price_product"];
+            $short_description = $_POST["short_description"];
+            $detail_description = $_POST["detail_description"];
+            $quantity_total = $_POST["quantity_total"];
+            $sale_off = $_POST["sale_off"];
+            $category_id = $_POST["category_id"];
+           
+            if(empty($name_product) || empty(trim($name_product))) {
+                $errors["name_product"] = "Vui lòng nhập tên sản phẩm";
+            }
+            if(empty($price_product) || empty(trim($price_product))) {
+                $errors["price_product"] = "Vui lòng nhập đơn giá";
+            }
+            if(empty($short_description) || empty(trim($short_description))) {
+                $errors["short_description"] = "Vui lòng nhập mô tả ngắn";
+            }
+            if(empty($detail_description) || empty(trim($detail_description))) {
+                $errors["detail_description"] = "Vui lòng nhập mô tả chi tiết";
+            }
+            if(empty($quantity_total) || empty(trim($quantity_total))) {
+                $errors["quantity_total"] = "Vui lòng nhập tổng số lượng";
+            }
+            if(empty($category_id)) {
+                $errors["category_id"] = "Chọn danh mục cho sản phẩm";
+            }
+            $image = "";
+            if($_FILES['image']['size'] > 0) {
+                $image_new = $_FILES['image'];
+                $image = ($_FILES['image']['error'] == 0) ? $_FILES['image']['name'] : "";
+            }else {
+                $image = $_POST["image_old"];
+            }
+            if(count($errors) > 0) {
+                redirect("errors",$errors,"edit-product");
+            } else {
+                if(isset($image)) {
+                    $result = $this->products->updateProduct($id,$name_product,$price_product,$image,$short_description,$detail_description,$quantity_total,$sale_off,$category_id);
+                    if($result) {
+                        if($image!="") {
+                            move_uploaded_file($_FILES["image"]["tmp_name"],"../public/img/product/".$image);
+                        }
+                        redirect("success","Cập nhật thành công","products");
+                    }
+                }
+            }
+            
+        }
+    }
+    public function removeProduct($id) {
+        $result = $this->products->deleteProduct($id);
+        if($result) {
+            redirect("success","Xóa thành công","products");
+        }
+    }
 }

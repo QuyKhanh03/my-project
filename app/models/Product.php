@@ -3,8 +3,8 @@ namespace App\Models;
 class Product extends BaseModel { 
     protected $product = "products";
     protected $category = "categories";
-    public function getProducts() { 
-        $sql = "SELECT * FROM $this->product";
+    public function getProducts($start , $per_page) { 
+        $sql = "SELECT * FROM $this->product LIMIT $start,$per_page";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
