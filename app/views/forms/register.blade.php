@@ -14,14 +14,42 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="account-login-inner">
-                    <form action="#" class="ltn__form-box contact-form-box">
-                        <input type="text" placeholder="Họ Tên">
-                        <input type="text" name="email" placeholder="Email*">
-                        <input type="password" name="password" placeholder="Mật Khẩu*">
-                        <input type="password" name="confirmpassword" placeholder="Nhập Lại Mật Khẩu*">
-                        
+                    <form id="myForm" action="{{ url('register') }}" method="POST" class="ltn__form-box contact-form-box">
+                        <div class="mb-2">
+                            {{-- họ tên --}}
+                            <input  style="height: 50px; margin: 0;" type="text" name="name_user" placeholder="Họ Tên">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["name_user"] }}</p>
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["name_user_2"] }}</p>
+                            @endif
+                        </div>
+                        {{-- email --}}
+                        <div class="mb-3">
+                            <input style="height: 50px; margin: 0;" type="text" name="email" placeholder="Email*">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["email"] }}</p>
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["email_check"] }}</p>
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["email_check_2"] }}</p>
+                            @endif
+                        </div>
+                        {{-- password --}}  
+                        <div class="mb-3">
+                            <input style="height: 50px; margin: 0;" type="password" name="password" placeholder="Mật Khẩu*">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["password"] }}</p>
+                            @endif
+                        </div>
+                        {{-- confirm password --}}
+                        <div class="mb-3">
+                            <input style="height: 50px; margin: 0;" type="password" name="confirmpassword" placeholder="Nhập Lại Mật Khẩu*">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["confirmpassword"] }}</p>
+                                <p style="color: red;margin: 0;">{{ $_SESSION["errors"]["confirm"] }}</p>
+                            @endif
+                        </div>
+                        <input type="hidden" name="role_id" value="2">
                         <div class="btn-wrapper">
-                            <button class="theme-btn-1 btn reverse-color btn-block" type="submit">Đăng Ký</button>
+                            <button name="btn" class="theme-btn-1 btn reverse-color btn-block" type="submit">Đăng Ký</button>
                         </div>
                     </form>
                     
@@ -30,4 +58,5 @@
         </div>
     </div>
 </div>
+
 @endsection

@@ -28,6 +28,7 @@ $router->get("product/{id}",[App\Controllers\ProductController::class, 'productD
 //products 
 
 $router->get("products",[App\Controllers\ProductController::class, 'index']);
+$router->post("comment",[App\Controllers\ProductController::class, 'addComment']);
 //category
 $router->get("category/{id}",[App\Controllers\CategoryController::class, 'categoryDetail']);
 
@@ -35,6 +36,9 @@ $router->get("category/{id}",[App\Controllers\CategoryController::class, 'catego
 //account
 $router->get("login",[App\Controllers\UserController::class, 'index']);
 $router->get("register",[App\Controllers\UserController::class, 'register']);
+$router->post("register",[App\Controllers\UserController::class, 'registerPost']);
+$router->post("login-post",[App\Controllers\UserController::class, 'loginPost']);
+$router->get("logout",[App\Controllers\UserController::class, 'logout']);
 //end
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains

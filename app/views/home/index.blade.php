@@ -1,5 +1,9 @@
  @extends('layout.displays')
  @section('content')
+
+    {{-- @php
+        echo print_r($_SESSION["auth"]);
+    @endphp --}}
      <div class="ltn__banner-area mt-120">
          <div class="container">
              <div class="row ltn__custom-gutter--- justify-content-center">
@@ -84,29 +88,7 @@
                                                                  @endif
                                                              </ul>
                                                          </div>
-                                                         <div class="product-hover-action">
-                                                             <ul>
-                                                                 <li>
-                                                                     <a href="{{ url('product/' . $value->id_product) }}"
-                                                                         title="Quick View" data-toggle="modal"
-                                                                         data-target="#quick_view_modal">
-                                                                         <i class="far fa-eye"></i>
-                                                                     </a>
-                                                                 </li>
-                                                                 <li>
-                                                                     <a href="#" title="Add to Cart"
-                                                                         data-toggle="modal"
-                                                                         data-target="#add_to_cart_modal">
-                                                                         <i class="fas fa-shopping-cart"></i>
-                                                                     </a>
-                                                                 </li>
-                                                                 <li>
-                                                                     <a href="#" title="Wishlist" data-toggle="modal"
-                                                                         data-target="#liton_wishlist_modal">
-                                                                         <i class="far fa-heart"></i></a>
-                                                                 </li>
-                                                             </ul>
-                                                         </div>
+                                                         
                                                      </div>
                                                      <div class="product-info">
                                                          <div class="product-ratting">
@@ -186,7 +168,7 @@
      <!-- COUNTDOWN AREA END -->
 
      <!-- PRODUCT AREA START (product-item-3) -->
-     <div class="ltn__product-area ltn__product-gutter pt-115 pb-70">
+     <div class="ltn__product-area  pt-115 pb-70">
          <div class="container">
              <div class="row">
                  <div class="col-lg-12">
@@ -195,15 +177,16 @@
                      </div>
                  </div>
              </div>
-             <div class="row ltn__tab-product-slider-one-active--- slick-arrow-1">
+             <div class="row ">
                  <!-- ltn__product-item -->
                  @foreach ($topProduct as $value)
                      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                          <div class="ltn__product-item ltn__product-item-3 text-left">
                              <div class="product-img">
-                                 <a href="{{ url('product-detail/' . $value->id_product) }}"><img
-                                         style="width: 260px; height: 265px;"
-                                         src="public/img/product/{{ $value->image }}" alt="#"></a>
+                                <a  href="{{ url('product/' . $value->id_product) }}"><img
+                                    style="width: 266px; height: 267px;"
+                                    src="public/img/product/{{ $value->image }}"
+                                    alt="#"></a>
                                  <div class="product-badge">
                                      <ul>
                                          @if ($value->sale_off > 0)
@@ -213,27 +196,7 @@
                                          @endif
                                      </ul>
                                  </div>
-                                 <div class="product-hover-action">
-                                     <ul>
-                                         <li>
-                                             <a href="{{ url('product-detail/' . $value->id_product) }}"
-                                                 title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                 <i class="far fa-eye"></i>
-                                             </a>
-                                         </li>
-                                         <li>
-                                             <a href="#" title="Add to Cart" data-toggle="modal"
-                                                 data-target="#add_to_cart_modal">
-                                                 <i class="fas fa-shopping-cart"></i>
-                                             </a>
-                                         </li>
-                                         <li>
-                                             <a href="#" title="Wishlist" data-toggle="modal"
-                                                 data-target="#liton_wishlist_modal">
-                                                 <i class="far fa-heart"></i></a>
-                                         </li>
-                                     </ul>
-                                 </div>
+                                 
                              </div>
                              <div class="product-info">
                                  <div class="product-ratting">
@@ -246,7 +209,7 @@
                                      </ul>
                                  </div>
                                  <h2 class="product-title"><a
-                                         href="{{ url('product-detail/' . $value->id_product) }}">{{ $value->name_product }}</a>
+                                         href="{{ url('product/' . $value->id_product) }}">{{ $value->name_product }}</a>
                                  </h2>
                                  <div class="product-price">
                                      @php
@@ -628,4 +591,6 @@
          </div>
      </div>
      <!-- FEATURE AREA END -->
+
+    
  @endsection

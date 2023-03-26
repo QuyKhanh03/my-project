@@ -18,6 +18,11 @@
             $this->setQuery($sql);
             return $this->loadAllRows();
         }
+        public function getProduct($id) {
+            $sql = "SELECT * FROM $this->products WHERE $this->products.id_product = ?";
+            $this->setQuery($sql);
+            return $this->loadRow(array($id));
+        }
     }
 
 ?>

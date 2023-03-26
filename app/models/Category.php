@@ -13,4 +13,10 @@ class Category extends BaseModel {
         $this->setQuery($sql);
         return $this->loadAllRows(array($id));
     }
+    //lấy tổng số lượng bản ghi
+    public function getTotalProduct() {
+        $sql = "SELECT count(*) FROM $this->product";
+        $this->setQuery($sql);
+        return $this->loadRecord();
+    }
 }

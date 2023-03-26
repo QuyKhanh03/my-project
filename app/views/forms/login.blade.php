@@ -7,26 +7,38 @@
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
                         <h1 class="section-title">Đăng Nhập <br>Vào Tài Khoản Của Bạn</h1>
-                        {{-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
-                            Sit aliquid, Non distinctio vel iste.</p> --}}
+                        @if(isset($_SESSION["success"]) && isset($_GET["msg"]))
+
+                            <div class="alert alert-success">
+                                <strong>{{ $_SESSION["success"] }}</strong> 
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 container">
                     <div class="account-login-inner">
-                        <form action="#" class="ltn__form-box contact-form-box">
+                        <form action="{{ url('login-post') }}" class="ltn__form-box contact-form-box" method="POST">
                             <input type="text" name="email" placeholder="Email*">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red; margin: 0;">{{ $_SESSION["errors"]["email"] }}</p>
+                            @endif
                             <input type="password" name="password" placeholder="Mật Khẩu*">
+                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                <p style="color: red; margin: 0;">{{ $_SESSION["errors"]["password"] }}</p>
+                            @endif
                             <div class="btn-wrapper mt-0">
-                                <button class="theme-btn-1 btn btn-block" type="submit">Đăng Nhập</button>
+                                @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                    <p style="color: red; margin: 0;">{{ $_SESSION["errors"] }}</p>
+                                @endif
+
+
+                                <button name="btn" class="theme-btn-1 btn btn-block" type="submit">Đăng Nhập</button>
                             </div>
                             <div class="go-to-btn mt-20">
                                 <a href="#"><small>Quên Mật Khẩu ?</small></a> 
                             </div>
-                            {{-- <div class="btn-wrapper">
-                                <a href="register.html" >Tạo Tài Khoản</a>
-                            </div> --}}
                         </form>
                     </div>
                 </div>

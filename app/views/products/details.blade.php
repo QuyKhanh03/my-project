@@ -87,7 +87,7 @@
                                         <ul>
                                             <li>
                                                 <div class="cart-plus-minus">
-                                                    <input type="text" value="1" name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="text" value="1"  name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </li>
                                             <li>
@@ -101,10 +101,7 @@
                                     <div class="ltn__product-details-menu-3">
                                         <ul>
                                             <li>
-                                                <a href="#" class="" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                    <i class="far fa-heart"></i>
-                                                    <span>Thêm vào sản phẩm yêu thích</span>
-                                                </a>
+                                                
                                             </li>
                                             
                                         </ul>
@@ -148,52 +145,77 @@
                                     <div class="product-ratting">
                                         <ul>
                                             
-                                            <li class="review-total"> <a href="#"> ( 95 đánh giá )</a></li>
+                                            <li class="review-total"> <a href="#"> ( {{ $countComment }} đánh giá )</a></li>
                                         </ul>
                                     </div>
                                     <hr>
+                                    @if(isset($_SESSION["success"]) && isset($_GET["msg"]))
+                                                <div class="alert alert-success" role="alert">
+                                                    {{ $_SESSION["success"] }}
+                                                </div>
+                                            @endif
                                     <!-- comment-area -->
+                                    @foreach ($listComment as $value)                                 
                                     <div class="ltn__comment-area mb-30">
                                         <div class="ltn__comment-inner">
                                             <ul>
-                                                
+                                                {{-- @php
+                                                    echo $dateTimeCurrent;
+                                                    echo $value->time;
+                                                @endphp      --}}
                                                 <li>
                                                     <div class="ltn__comment-item clearfix">
                                                         <div class="ltn__commenter-img">
-                                                            <img src="{{ url('public/img/testimonial/2.jpg') }}" alt="Image">
+                                                            @if($value->avatar == null)
+                                                                 <h2><i class="icon-user"></i></h2>
+                                                            @else 
+                                                            <img src="{{ url('public/img/testimonial/') }}{{ $value->avatar }}" >
+                                                            @endif
                                                         </div>
                                                         <div class="ltn__commenter-comment">
-                                                            <h6><a href="#">Adam Smit</a></h6>
+                                                            <h6><a href="#">{{ $value->name_user }}</a></h6>
                                                             <div class="product-ratting">
                                                                
                                                             </div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                            <span class="ltn__comment-reply-btn">September 2, 2020</span>
+                                                            <p>{{ $value->content }}.</p>
+                                                            <span class="ltn__comment-reply-btn">{{ ($dateTimeCurrent>=$value->time) ? "Vừa xong" : date('i:H | d-m-Y', strtotime($value->time)) }}</span>
                                                         </div>
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
+                                        
                                     </div>
+                                    @endforeach
                                     <!-- comment-reply -->
                                     <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                        <form action="#">
-                                            <h4 class="title-2">Add a Review</h4>
+                                        <form action="{{ url('comment') }}" method="POST">
+                                            <input type="hidden" name="user_id" value="{{ $_SESSION["auth"]->id_user }}">
+                                            <input type="hidden" name="product_id" value="{{ $product->id_product }}">
+                                            <h4 class="title-2">Thêm đánh giá</h4>
                                             <div class="mb-30">
                                                 <div class="add-a-review">
-                                                    <h6>Your Ratings:</h6>
+                                                    <h6>Đánh giá của bạn:</h6>
                                                     <div class="product-ratting">
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="input-item input-item-textarea ltn__custom-icon">
-                                                <textarea placeholder="Type your comments...."></textarea>
+                                                <textarea required name="content" placeholder="Cảm nghĩ của bạn về sản phẩm của chúng tôi...."></textarea>
+                                               
                                             </div>
+                                            @if(isset($_SESSION["errors"]) && isset($_GET["msg"]))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $_SESSION["errors"] }}
+                                                    <a href="{{ url('login') }}">! Đăng Nhập Ngay</a>
+                                                </div>
+                                            @endif
+                                            
                                             
                                             
                                             <div class="btn-wrapper">
-                                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
+                                                <button name="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Lưu</button>
                                             </div>
                                         </form>
                                     </div>
@@ -237,24 +259,7 @@
                                 @endif
                                 </ul>
                             </div>
-                            <div class="product-hover-action">
-                                <ul>
-                                    <li>
-                                        <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                            <i class="far fa-heart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </div>
                         <div class="product-info">
                             <div class="product-ratting">
