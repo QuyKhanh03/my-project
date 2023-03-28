@@ -39,6 +39,8 @@ $router->get("register",[App\Controllers\UserController::class, 'register']);
 $router->post("register",[App\Controllers\UserController::class, 'registerPost']);
 $router->post("login-post",[App\Controllers\UserController::class, 'loginPost']);
 $router->get("logout",[App\Controllers\UserController::class, 'logout']);
+$router->get("account",[App\Controllers\UserController::class, 'profile']);
+$router->post("updateInfo",[\App\Controllers\UserController::class,'updateAccount']);
 //end
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains

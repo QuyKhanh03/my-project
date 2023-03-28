@@ -32,7 +32,7 @@
                             <div class="row">
                                 @foreach ($products as $value)
                                 <!-- ltn__product-item -->
-                                
+                                    
                                     <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
                                         
                                             <div class="ltn__product-item ltn__product-item-3 text-center">

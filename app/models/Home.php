@@ -9,7 +9,7 @@
             return $this->loadAllRows();
         }
         public function getProductByIdCate($id) {
-            $sql = "SELECT * FROM $this->products WHERE $this->products.category_id = ?";
+            $sql = "SELECT * FROM $this->products WHERE $this->products.category_id = ? AND $this->products.quantity_total > 0";
             $this->setQuery($sql);
             return $this->loadAllRows(array($id));
         }
@@ -18,11 +18,7 @@
             $this->setQuery($sql);
             return $this->loadAllRows();
         }
-        public function getProduct($id) {
-            $sql = "SELECT * FROM $this->products WHERE $this->products.id_product = ?";
-            $this->setQuery($sql);
-            return $this->loadRow(array($id));
-        }
+       
     }
 
 ?>

@@ -46,4 +46,16 @@ class UserController extends BaseController
             
         }
     }
+    //logout
+    public function logout()
+    {
+        unset($_SESSION['admin']);
+        redirect("success", "Đăng xuất thành công", "");
+    }
+
+    public function index()
+    {
+        $customers = $this->user->getUsersAndCountOrders();
+        $this->render('customers.index', compact('customers'));
+    }
 }

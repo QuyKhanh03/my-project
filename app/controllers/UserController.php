@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use PHPMailer\PHPMailer\PHPMailer;
-require_once "./vendor/autoload.php";
+
 class UserController extends BaseController
 {
     public $user;
@@ -71,9 +71,7 @@ class UserController extends BaseController
                     redirect("errors", $errors, "register");
                 } else {
                     $mail = new PHPMailer(true);
-                    try {
-                        //Server settings
-                        $mail->CharSet = "UTF-8";
+                    $mail->CharSet = "UTF-8";
                         $mail->Encoding = 'base64';
                         $mail->SMTPDebug = 0;                                 // bật tính năng gửi success or faild thì vẫn show thông tin mail để ta cấu hình
                         $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -83,35 +81,22 @@ class UserController extends BaseController
                         $mail->Password = 'gcykqtleorouyifc';                           // SMTP password
                         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                         $mail->Port = 587;                                    // TCP port to connect to
-
                         //Recipients
                         $mail->setFrom('phamngockhanh29703@gmail.com', ' Broccoli');
                         $mail->addAddress($email, $name_user);           // Name is optional
                         $mail->addCC('phamngockhanh29703@gmail.com');
-
                         //Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Chào mừng bạn đến với Broccoli !!!';
-
                         $body = '';
                         $body .= '<p>Xin chào,</p>'.$name_user;
                         $body .= '<p>Bạn đã đăng ký tài khoản tại Broccoli vào </p>'.date('d-m-Y H:i', strtotime($date));
                         
-                        // $body .= '<p>Nếu bạn đã yêu cầu đặt lại mật khẩu, hãy ấn vào <a href="change_passowrd.php"><h3 style="color: green;">tại đây</h3></a> để tạo mật khẩu mới để vào tài khoản XOSS Shop của bạn.</p>';
-                        // $body .= '<p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>';
-                        // $body .= 'Nếu bạn gặp phải bất cứ vấn đề nào khi đăng nhập vào tài khoản XOSS Shop, vui lòng gửi mail đến địa chỉ: phamngockhanh29703@gmail.com</pre>';
                         $body .= '<p>Trân trọng.</p>';
-
-                        // $mail->Body    = 'Mat khau moi cua ban la: ' . $forget_password;
+                       
                         $mail->Body = $body;
-
                         $mail->send();
-                        // echo 'Message has been sent';
-                    } catch (Exception $e) {
-                        // echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-                    }
-
-                    $result = $this->user->insertUser($name_user, $email, md5($password), $role_id);
+                    $result = $this->user->insertUser($name_user, $email, (md5($password)), $role_id);
                     if ($result) {
                         redirect("success", "Đăng ký thành công", "login");
                     }
@@ -131,21 +116,73 @@ class UserController extends BaseController
             if (empty($password) && empty(trim($password))) {
                 $errors["password"] = "Mật khẩu không được để trống";
             }
-            $AllUsers = $this->user->getUsers();
-            foreach ($AllUsers as $value) {
-                echo $value->email . " " . $value->password . " " . $value->role_id;
-                if ($value->email == $email && $value->password == (md5($password))) {
-                    $_SESSION["auth"] = $value;
-                    redirect("success", "Đăng nhập thành công", "/");
-                } else {
-                    redirect("errors", "Đăng nhập thất bại!!! ", "login");
-                }
+            $Users = $this->user->getUserByEmailPassword($email, md5($password));
+            if($Users->email == $email && $Users->password == md5($password)){
+                $_SESSION["auth"] = $Users;
+                redirect("success", "Đăng nhập thành công", "");
+            } else {
+                redirect("errors", "Đăng nhập thất bại!!! ", "login");
             }
         }
     }
     public function logout()
     {
         unset($_SESSION["auth"]);
-        redirect("success", "Đăng xuất thành công", "/");
+        redirect("success", "Đăng xuất thành công", "");
+    }
+    public function profile()
+    {
+        if(isset($_SESSION["auth"])) {
+            $id = $_SESSION["auth"]->id_user;
+            $auth = $this->user->getUserById($id);
+        }
+        $title = "Thông tin cá nhân";
+        $title_banner = "Thông tin cá nhân";
+       
+        $this->render("customer.info", compact('title', 'title_banner','auth'));
+    }
+    //update account
+    public function updateAccount() {
+        if(isset($_SESSION["auth"])) {
+            if(isset($_POST["btn"])) {
+                $id = $_SESSION["auth"]->id_user;
+                $name_user = $_POST["name_user"];
+                $email = $_POST["email"];
+                $phone = $_POST["phone"];
+                $address = $_POST["address"];
+                $password = "";
+                if(!empty($_POST["password_new"])) {
+                    $password = $_POST["password_new"];
+                    
+                    $rePass = $_POST["rePass"];
+                    if($rePass != $password) {
+                        redirect("errors","Mật khẩu không trùng khớp","account");
+                        die();
+                    }
+
+                }else {
+
+                    $password = $_SESSION["auth"]->password;
+                }
+                
+                $image = "";
+                if($_FILES["avatar"]["size"] > 0) {
+                    $image_new = $_FILES["avatar"];
+                 $image = ($_FILES['avatar']['error'] == 0) ? $_FILES['avatar']['name'] : "";
+                }else {
+                    $image = $_POST["avatar_old"];
+                }
+                if(isset($image)) {
+                    $result = $this->user->updateUser($name_user,$email,md5($password),$address,$phone,$image,$id);
+                    if($result) {
+                        move_uploaded_file($_FILES["avatar"]["tmp_name"],"public/img/testimonial/".$image);
+                    }
+                    redirect("success","Cập nhật thàng công","account");
+                }
+            }
+
+        }else {
+            redirect("errors", "Bạn chưa đăng nhập", "login");
+        }
     }
 }

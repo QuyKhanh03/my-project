@@ -25,8 +25,6 @@
                                                 <img src="{{ url('public/img/product/') }}{{ $product->image }}" alt="Image">
                                             </a>
                                         </div>
-                                        
-                                        
                                     </div>
                                     <div class="ltn__shop-details-small-img slick-arrow-2">
                                         <div class="single-small-img">
@@ -85,17 +83,20 @@
                                     </div>
                                     <div class="ltn__product-details-menu-2">
                                         <ul>
+                                            <form action="#">
                                             <li>
                                                 <div class="cart-plus-minus">
-                                                    <input type="text" value="1"  name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="number" min="1" value="1" max="{{ $product->quantity_total }}"  name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </li>
                                             <li>
-                                                <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
+                                            
+                                                <button class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
                                                     <i class="fas fa-shopping-cart"></i>
                                                     <span>Thêm vào giỏi hàng</span>
-                                                </a>
+                                                </button>  
                                             </li>
+                                            </form>
                                         </ul>
                                     </div>
                                     <div class="ltn__product-details-menu-3">

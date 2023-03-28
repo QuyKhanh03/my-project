@@ -4,11 +4,12 @@ class Product extends BaseModel {
     protected $product = "products";
     protected $category = "categories";
     public $comment = "comments";
-    public function getProducts($start , $per_page) { 
-        $sql = "SELECT * FROM $this->product LIMIT $start,$per_page";
+    public function getProducts($start , $per_page,$search) { 
+        $sql = "SELECT * FROM $this->product WHERE $this->product.quantity_total >0 and $this->product.name_product LIKE '%$search%' LIMIT $start,$per_page";
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
+   
 
     
     public function getProduct($id) { 

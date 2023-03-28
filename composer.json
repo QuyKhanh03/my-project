@@ -15,6 +15,7 @@
         "phroute/phroute": "^2.2",
         "illuminate/events": "^10.3",
         "eftec/bladeone": "^4.8",
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.8",
+        "google/apiclient": "^2.13"
     }
 }

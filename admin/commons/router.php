@@ -7,8 +7,8 @@ $url = !isset($_GET['url']) ? "/" : $_GET['url'];
 $router = new RouteCollector(); 
 
 // filter check đăng nhập
-$router->filter('auth', function(){
-    if(!isset($_SESSION['auth']) || empty($_SESSION['auth'])){
+$router->filter('admin', function(){
+    if(!isset($_SESSION['admin']) || empty($_SESSION['admin'])){
         header('location: ' . BASE_URL . 'login');die;
     }
 });
@@ -43,7 +43,10 @@ $router->get("delete-category/{id}",[App\Controllers\CategoryController::class, 
 
 $router->get("login",[App\Controllers\UserController::class, 'showFormLogin']);
 $router->post("login-post",[App\Controllers\UserController::class,'loginPost']);
+$router->get("logout",[App\Controllers\UserController::class, 'logout']);
 //end
+//customer start
+$router->get("customer",[App\Controllers\UserController::class, 'index']);
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

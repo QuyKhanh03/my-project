@@ -27,6 +27,10 @@ class ProductController extends BaseController {
     }
 
     public function index() {     
+        $search = "";
+        if(isset($_GET["search"])) {
+            $search = $_GET["search"];
+        }
         $total_record = $this->product->getTotalProduct(); //đếm số lượng bản ghi
         //số lượng bản ghi trong 1 trang
          $per_page = 8;
@@ -43,7 +47,7 @@ class ProductController extends BaseController {
         //}
         $title = "Sản phẩm";
         $title_banner = "Trang sản phẩm";
-        $products = $this->product->getProducts($page_fist_result,$per_page);
+        $products = $this->product->getProducts($page_fist_result,$per_page,$search);
         $this->render("products.index",compact('products','title','title_banner','number_of_page','page','total_record','page_fist_result','per_page'));   
     }
     // 

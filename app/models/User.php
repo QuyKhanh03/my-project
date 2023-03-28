@@ -16,4 +16,22 @@ class User extends BaseModel {
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
+    //get user by email password
+    public function getUserByEmailPassword($email,$password) {
+        $sql = "SELECT * FROM $this->user WHERE email = ? AND password = ?";
+        $this->setQuery($sql);
+        return $this->loadRow(array($email,$password));
+    }
+    //update user
+    public function updateUser($name_user,$email,$password,$address,$phone,$avatar,$id) {
+       $sql = "UPDATE $this->user SET `name_user` = ?, `email`=?, `password`=?,`address` = ?, `phone`=?,`avatar`=? where id_user = ?";
+       $this->setQuery($sql);
+       return $this->execute(array($name_user,$email,$password,$address,$phone,$avatar,$id));
+    }
+    //get user by id 
+    public function getUserById($id) {
+        $sql = "SELECT * FROM $this->user where id_user = ?";
+        $this->setQuery($sql);
+        return $this->loadRow(array($id));
+    }
 }
