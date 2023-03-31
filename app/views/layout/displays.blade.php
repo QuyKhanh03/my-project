@@ -170,7 +170,9 @@
                         <div class="mini-cart-icon">
                             <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
                                 <i class="icon-shopping-cart"></i>
-                                <sup>2</sup>
+                                @if(isset($_SESSION["carts"]))
+                                <sup>{{ count($_SESSION["carts"]) }}</sup>
+                                @endif
                             </a>
                         </div>
                         <!-- mini-cart -->
@@ -196,60 +198,42 @@
     <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
         <div class="ltn__utilize-menu-inner ltn__scrollbar">
             <div class="ltn__utilize-menu-head">
-                <span class="ltn__utilize-menu-title">Cart</span>
+                <span class="ltn__utilize-menu-title">Giỏ hàng</span>
                 <button class="ltn__utilize-close">×</button>
             </div>
             <div class="mini-cart-product-area ltn__scrollbar">
+                @php
+                    $order_total = 0;
+                @endphp
+                @if (isset($_SESSION["carts"]))
+                @foreach ($_SESSION["carts"] as$key=>$value )
                 <div class="mini-cart-item clearfix">
                     <div class="mini-cart-img">
-                        <a href="#"><img src="{{url('public/img/product/1.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
+                        <a href="#"><img src="{{url('public/img/product/')}}{{ $value["image"] }}" alt="Image"></a>
+                        <a href="{{ url('remove-item-cart/'.$value["id"]) }}" class="mini-cart-item-delete"><i class="icon-cancel"></i></a>
                     </div>
                     <div class="mini-cart-info">
-                        <h6><a href="#">Red Hot Tomato</a></h6>
-                        <span class="mini-cart-quantity">1 x $65.00</span>
+                        <h6><a href="#">{{ $value["name"] }}</a></h6>
+                        <span class="mini-cart-quantity">{{ $value["quantity"] }} x {{ number_format($value["price"])  }} <b>VNĐ</b></span>
                     </div>
                 </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{url('public/img/product/2.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Vegetables Juices</a></h6>
-                        <span class="mini-cart-quantity">1 x $85.00</span>
-                    </div>
-                </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{url('public/img/product/3.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Orange Sliced Mix</a></h6>
-                        <span class="mini-cart-quantity">1 x $92.00</span>
-                    </div>
-                </div>
-                <div class="mini-cart-item clearfix">
-                    <div class="mini-cart-img">
-                        <a href="#"><img src="{{url('public/img/product/4.png')}}" alt="Image"></a>
-                        <span class="mini-cart-item-delete"><i class="icon-cancel"></i></span>
-                    </div>
-                    <div class="mini-cart-info">
-                        <h6><a href="#">Orange Fresh Juice</a></h6>
-                        <span class="mini-cart-quantity">1 x $68.00</span>
-                    </div>
-                </div>
+                @php
+                    $order_total += $value["quantity"] * $value["price"];
+                @endphp
+                @endforeach
+                @endif
+                
+                
             </div>
             <div class="mini-cart-footer">
                 <div class="mini-cart-sub-total">
-                    <h5>Subtotal: <span>$310.00</span></h5>
+                    <h5>Tổng : <span>{{ number_format($order_total) }} <b>VNĐ</b></span></h5>
                 </div>
                 <div class="btn-wrapper">
-                    <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View Cart</a>
-                    <a href="cart.html" class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                    <a href="{{ url('cart') }}" class="theme-btn-1 btn btn-effect-1">Xem giỏ hàng</a>
+                    <a href="{{ url('checkout') }}" class="theme-btn-2 btn btn-effect-2">Thanh toán</a>
                 </div>
-                <p>Free Shipping on All Orders Over $100!</p>
+                
             </div>
     
         </div>

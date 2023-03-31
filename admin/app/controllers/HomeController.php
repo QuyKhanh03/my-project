@@ -16,7 +16,11 @@ class HomeController extends BaseController {
             $customerMonth = $this->home->getCustomerMonthly();
             $customerWeek = $this->home->getCustomerWeekly();
             $customerYear = $this->home->getCustomerYearly();
-            $this->render("home.index",compact("totalMonth","totalWeek","totalYear","customerMonth","customerWeek","customerYear"));
+            $topOrder = $this->home->getTop5Order();
+            $total_order = $this->home->getTotalOrderToday();
+            $total_amount = $this->home->getTotalAmountToday();
+            $customers = $this->home->getTotalCustomerToday();
+            $this->render("home.index",compact("totalMonth","totalWeek","totalYear","customerMonth","customerWeek","customerYear","topOrder","total_order","total_amount","customers"));
         }else {
             redirect("","","login");
         }

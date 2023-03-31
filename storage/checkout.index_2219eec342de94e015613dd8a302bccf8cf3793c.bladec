@@ -1,0 +1,244 @@
+<?php $_shouldextend[1]=1; ?>
+
+<?php $this->startSection('content'); ?>
+
+
+<div class="ltn__checkout-area mb-105">
+ <div class="container">
+ <?php if(isset($_SESSION["errors"])&& isset($_GET["msg"])): ?>
+ <div class="alert alert-danger mt-5 " role="alert">
+ <?php echo \htmlentities($_SESSION["errors"]??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ </div>
+ <a href="<?php echo \htmlentities(url('cart')??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn theme-btn-1 btn-effect-1 text-uppercase">Trở về giỏ hàng</a>
+ <?php endif; ?>
+ <?php if(isset($_SESSION["success"])&& isset($_GET["msg"])): ?>
+ <div class="alert alert-success mt-5 " role="alert">
+ <?php echo \htmlentities($_SESSION["success"]??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ </div>
+ 
+ <a href="<?php echo \htmlentities(url("")??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn theme-btn-1 btn-effect-1 text-uppercase">Trở về trang chủ</a>
+ <?php else: ?>
+ <?php if(!isset($_SESSION["auth"])): ?>
+ <form action="<?php echo \htmlentities(url('checkoutPost')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST">
+ <div class="row">
+ 
+ <div class="col-lg-12">
+ <div class="ltn__checkout-inner">
+ 
+ <div class="ltn__checkout-single-content mt-50">
+ <h4 class="title-2">Thanh Toán</h4>
+ <div class="ltn__checkout-single-content-info">
+ 
+ <h6>Thông tin người nhận</h6>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="input-item input-item-name ltn__custom-icon">
+ <input type="text" name="name_user" placeholder="Họ tên">
+ </div>
+ </div>
+ 
+ <div class="col-md-6">
+ <div class="input-item input-item-email ltn__custom-icon">
+ <input type="email" name="email" placeholder="Địa chỉ Email">
+ </div>
+ </div>
+ <div class="col-md-6">
+ <div class="input-item input-item-phone ltn__custom-icon">
+ <input type="text" name="phone" placeholder="Số điện thoại">
+ </div>
+ </div>
+ </div>
+ <div class="row">
+ 
+ <div class="col-lg-12 col-md-12">
+ <h6>Địa chỉ</h6>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="input-item">
+ <input name="address" type="text" placeholder="địa chỉ nhận hàng">
+ </div>
+ </div>
+ 
+ </div>
+ </div>
+ 
+ </div>
+ <?php /* <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Bạn có muốn tạo tài khoản?</label></p> */ ?>
+ <h6>Ghi chú (nếu có)</h6>
+ <div class="input-item input-item-textarea ltn__custom-icon">
+ <textarea name="note" placeholder=""></textarea>
+ </div>
+
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="ltn__checkout-payment-method mt-50">
+ <h4 class="title-2">Hình thức thanh toán</h4>
+ <div id="checkout_accordion_1">
+ <!-- card -->
+ 
+ <!-- card -->
+ <div class="card">
+ <h5 class="ltn__card-title" data-toggle="collapse" data-target="#faq-item-2-2" aria-expanded="true"> 
+ Thanh toán khi nhận hàng
+ </h5>
+ <div id="faq-item-2-2" class="collapse show" data-parent="#checkout_accordion_1">
+ <div class="card-body">
+ <p>Thanh toán bằng tiền mặt khi giao hàng.</p>
+ </div>
+ </div>
+ </div>                          
+ 
+ </div>
+ <div class="ltn__payment-note mt-30 mb-30">
+ <br>
+ </div>
+ 
+ <a href="<?php echo \htmlentities(url('cart')??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Trở lại trang giỏ hàng</a>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="shoping-cart-total mt-50">
+ <h4>Tổng giỏ hàng</h4>
+ <table class="table">
+ <tbody>
+ <?php $__currentLoopData = $_SESSION["carts"]; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key=>$value): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($value["name"]??'', ENT_QUOTES, 'UTF-8', false); ?> <b>x</b> <?php echo \htmlentities($value["quantity"]??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($value["total"])??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <?php 
+ $order_total = 0;
+ foreach ($_SESSION["carts"] as $key=>$value) {
+ $order_total += $value["total"];
+ }
+ ?>
+ <tr>
+ <td><strong>Tổng đơn hàng</strong></td>
+ <td><strong><?php echo \htmlentities(number_format($order_total)??'', ENT_QUOTES, 'UTF-8', false); ?></strong> <b>VNĐ</b></td>
+ </tr>
+ </tbody>
+ </table>
+ <div class="btn-wrapper text-right">
+ <input type="hidden" name="total_amount" value="<?php echo \htmlentities($order_total??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <button name="btn" class="theme-btn-1 btn btn-effect-1">Thanh toán ngay</button>
+ </div>
+ </div>
+ </div>
+ 
+
+ </div>
+ </form>
+ <?php else: ?>
+ <form action="<?php echo \htmlentities(url('checkoutPost')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST">
+ <div class="row">
+ 
+ <div class="col-lg-12">
+ <div class="ltn__checkout-inner">
+ 
+ <div class="ltn__checkout-single-content mt-50">
+ <h4 class="title-2">Thanh Toán</h4>
+ <div class="ltn__checkout-single-content-info">
+ 
+ <h6>Thông tin người nhận</h6>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="input-item input-item-name ltn__custom-icon">
+ <input type="text" name="name_user" placeholder="Họ tên" value="<?php echo \htmlentities($_SESSION["auth"]->name_user??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ </div>
+ 
+ <div class="col-md-6">
+ <div class="input-item input-item-email ltn__custom-icon">
+ <input type="email" name="email" placeholder="Địa chỉ Email" value="<?php echo \htmlentities($_SESSION["auth"]->email??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ </div>
+ <div class="col-md-6">
+ <div class="input-item input-item-phone ltn__custom-icon">
+ <input type="text" name="phone" placeholder="Số điện thoại" value="<?php echo \htmlentities($_SESSION["auth"]->phone??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ </div>
+ 
+ </div>
+ <div class="row">
+ 
+ <div class="col-lg-12 col-md-12">
+ <h6>Địa chỉ</h6>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="input-item">
+ <input name="address" type="text" placeholder="địa chỉ nhận hàng" value="<?php echo \htmlentities($_SESSION["auth"]->address??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ </div>
+ 
+ </div>
+ </div>
+ 
+ </div>
+ <?php /* <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Bạn có muốn tạo tài khoản?</label></p> */ ?>
+ <h6>Ghi chú (nếu có)</h6>
+ <div class="input-item input-item-textarea ltn__custom-icon">
+ <textarea name="note" placeholder=""></textarea>
+ </div>
+
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="ltn__checkout-payment-method mt-50">
+ <div class="ltn__payment-note mt-30 mb-30">
+ <br>
+ </div>
+ 
+ <a href="<?php echo \htmlentities(url('cart')??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Trở lại trang giỏ hàng</a>
+ </div>
+ </div>
+ <div class="col-lg-6">
+ <div class="shoping-cart-total mt-50">
+ <h4>Tổng giỏ hàng</h4>
+ <table class="table">
+ <tbody>
+ <?php $__currentLoopData = $_SESSION["carts"]; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key=>$value): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($value["name"]??'', ENT_QUOTES, 'UTF-8', false); ?> <b>x</b> <?php echo \htmlentities($value["quantity"]??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($value["total"])??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ <?php 
+ $order_total = 0;
+ foreach ($_SESSION["carts"] as $key=>$value) {
+ $order_total += $value["total"];
+ }
+ ?>
+ <tr>
+ <td><strong>Tổng đơn hàng</strong></td>
+ <td><strong><?php echo \htmlentities(number_format($order_total)??'', ENT_QUOTES, 'UTF-8', false); ?></strong> <b>VNĐ</b></td>
+ </tr>
+ </tbody>
+ </table>
+ <div class="btn-wrapper text-right">
+ <input type="hidden" name="total_amount" value="<?php echo \htmlentities($order_total??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <button name="btn" class="theme-btn-1 btn btn-effect-1">Thanh toán ngay</button>
+ </div>
+ </div>
+ </div>
+ 
+
+ </div>
+ </form>
+ <?php endif; ?>
+ <?php endif; ?>
+ </div>
+</div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.displays'); } ?>

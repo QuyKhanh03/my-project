@@ -12,12 +12,12 @@
             <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-title-wrapper">
                     <div class="page-title-box">
-                        <h4 class="page-title bold">Dashboard</h4>
+                        <h4 class="page-title bold">Quản trị</h4>
                     </div>
                     <div class="breadcrumb-list">
                         <ul>
                             <li class="breadcrumb-link">
-                                <a href="index.html"><i class="fas fa-home mr-2"></i>Dashboard</a>
+                                <a href="index.html"><i class="fas fa-home mr-2"></i>Bảng điều khiển</a>
                             </li>
                             <li class="breadcrumb-link active">Admin</li>
                         </ul>
@@ -111,8 +111,8 @@
                             </svg>
                         </div>
                         <div class="icon-info-text">
-                            <h5 class="ad-title">Happy customers</h5>
-                            <h4 class="ad-card-title">66k</h4>
+                            <h5 class="ad-title">Tổng khách hàng trong ngày</h5>
+                            <h4 class="ad-card-title">{{ $customers }}</h4>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="icon-info-text">
                             <h5 class="ad-title">Đơn đặt trong ngày</h5>
-                            <h4 class="ad-card-title">15k</h4>
+                            <h4 class="ad-card-title">{{ $total_order }}</h4>
                         </div>
                     </div>
                 </div>
@@ -139,26 +139,14 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><g id="hand_&#xB7;_ecommerce_&#xB7;_shopping_&#xB7;_online_&#xB7;_sale" data-name="hand &#xB7; ecommerce &#xB7; shopping &#xB7; online &#xB7; sale"><path d="M61,52H59V23a3.009,3.009,0,0,0-3-3H49V9a1,1,0,0,0-1-1H45a5.992,5.992,0,0,0-8.5-5.45A5.992,5.992,0,0,0,28,8H24a1,1,0,0,0-1,1V20H8a3.009,3.009,0,0,0-3,3V52H3a1,1,0,0,0-1,1v4a5,5,0,0,0,5,5H57a5,5,0,0,0,5-5V53A1,1,0,0,0,61,52ZM45,25V10h2V27a3.009,3.009,0,0,1-3,3H42.89A6.97,6.97,0,0,0,45,25ZM39,4a4,4,0,0,1,4,4H40a6.016,6.016,0,0,0-1.49-3.95A3.87,3.87,0,0,1,39,4Zm-2.5.9A3.976,3.976,0,0,1,38,8H35A3.976,3.976,0,0,1,36.5,4.9ZM34,4a3.87,3.87,0,0,1,.49.05A6.016,6.016,0,0,0,33,8H30A4,4,0,0,1,34,4Zm-9,6h3v2a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2V10h8v2a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2V10h3V25a5,5,0,0,1-5,5H30a5,5,0,0,1-5-5ZM23.08,26A7,7,0,0,0,30,32H44a5,5,0,0,0,5-5V26h4V48H11V46h5a1,1,0,0,0,1-1v-.14l.93.62a2.952,2.952,0,0,0,1.68.52H34.46a2.925,2.925,0,0,0,1.5-.4l13.4-7.73a3.006,3.006,0,0,0,1.1-4.1,3.011,3.011,0,0,0-4.1-1.1l-6.43,3.71A2.993,2.993,0,0,0,37,34H29.3l-.2-.13A10.972,10.972,0,0,0,17,33.8V33a1,1,0,0,0-1-1H11V26ZM11,44V34h4V44Zm20-4h6a2.982,2.982,0,0,0,1.98-.77l8.39-4.83a1.006,1.006,0,0,1,1.49.86.992.992,0,0,1-.5.87L34.95,43.87a.922.922,0,0,1-.49.13H19.61a1.023,1.023,0,0,1-.56-.17L17,42.46V36a.967.967,0,0,0,.55-.17l.46-.3a8.975,8.975,0,0,1,9.98,0l.46.3A.967.967,0,0,0,29,36h8a1,1,0,0,1,.71,1.7.01.01,0,0,0-.01.01A.991.991,0,0,1,37,38H31a1,1,0,0,0,0,2ZM7,23a1,1,0,0,1,1-1H23v2H10a1,1,0,0,0-1,1V49a1,1,0,0,0,1,1H54a1,1,0,0,0,1-1V25a1,1,0,0,0-1-1H49V22h7a1,1,0,0,1,1,1V52H7ZM36,54v1a1,1,0,0,1-1,1H29a1,1,0,0,1-1-1V54Zm24,3a3.009,3.009,0,0,1-3,3H7a3.009,3.009,0,0,1-3-3V54H26v1a3.009,3.009,0,0,0,3,3h6a3.009,3.009,0,0,0,3-3V54H60Z"/><path d="M29.293,26.707a1,1,0,0,0,1.414,0l8-8a1,1,0,0,0-1.414-1.414l-8,8A1,1,0,0,0,29.293,26.707Z"/><circle cx="30" cy="20" r="2"/><circle cx="38" cy="24" r="2"/></g></svg>
                         </div>
                         <div class="icon-info-text">
-                            <h5 class="ad-title">Total Sales</h5>
-                            <h4 class="ad-card-title">420k</h4>
+                            <h5 class="ad-title">Tổng doanh thu trong ngày</h5>
+                            <h4 class="ad-card-title">{{ number_format($total_amount) }} <b>VNĐ</b></h4>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Start Card-->
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="card ad-info-card">
-                    <div class="card-body dd-flex align-items-center">
-                        <div class="icon-info">
-                            <svg enable-background="new 0 0 64 64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g><path d="m28 60c4.962 0 9-4.038 9-9s-4.038-9-9-9-9 4.038-9 9 4.038 9 9 9zm0-16c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.14-7-7 3.14-7 7-7z"/><path d="m26 53h-2c0 1.654 1.346 3 3 3v1h2v-1c1.654 0 3-1.346 3-3s-1.346-3-3-3v-2c.551 0 1 .449 1 1h2c0-1.654-1.346-3-3-3v-1h-2v1c-1.654 0-3 1.346-3 3s1.346 3 3 3v2c-.551 0-1-.449-1-1zm0-4c0-.551.449-1 1-1v2c-.551 0-1-.449-1-1zm3 3c.551 0 1 .449 1 1s-.449 1-1 1z"/><path d="m62 29h-9v-4.08c3.387-.488 6-3.401 6-6.92v-4c0-.552-.448-1-1-1-2.548 0-4.775 1.373-6 3.413-1.225-2.04-3.452-3.413-6-3.413-.552 0-1 .448-1 1v4c0 3.519 2.613 6.432 6 6.92v4.08h-18v-5h3c3.86 0 7-3.14 7-7 0-.552-.448-1-1-1h-4c-1.958 0-3.728.81-5 2.11v-5.169c4.493-.5 8-4.317 8-8.941v-2c0-.552-.448-1-1-1-3.483 0-6.505 1.993-8 4.896-1.495-2.903-4.517-4.896-8-4.896-.552 0-1 .448-1 1v2c0 4.624 3.507 8.441 8 8.941v5.169c-1.272-1.3-3.042-2.11-5-2.11h-4c-.552 0-1 .448-1 1 0 3.86 3.14 7 7 7h3v5h-18v-4.08c3.387-.488 6-3.401 6-6.92v-4c0-.552-.448-1-1-1-2.548 0-4.775 1.373-6 3.413-1.225-2.04-3.452-3.413-6-3.413-.552 0-1 .448-1 1v4c0 3.519 2.613 6.432 6 6.92v4.08h-1c-.552 0-1 .448-1 1v5h-3c-.552 0-1 .448-1 1v3h-3c-.552 0-1 .448-1 1v22c0 .552.448 1 1 1h52c.552 0 1-.448 1-1v-3h3c.552 0 1-.448 1-1v-5h3c.552 0 1-.448 1-1v-22c0-.552-.448-1-1-1zm-5-13.899v2.899c0 2.415-1.721 4.435-4 4.899v-2.899c0-2.415 1.721-4.435 4-4.899zm-10 2.899v-2.899c2.279.464 4 2.485 4 4.899v2.899c-2.279-.464-4-2.484-4-4.899zm-9 0h2.899c-.464 2.279-2.485 4-4.899 4h-2.899c.464-2.279 2.484-4 4.899-4zm-10 4c-2.415 0-4.435-1.721-4.899-4h2.899c2.415 0 4.435 1.721 4.899 4zm11-18.929v.929c0 3.521-2.612 6.442-6 6.929v-.929c0-3.521 2.612-6.442 6-6.929zm-14 .929v-.929c3.388.487 6 3.408 6 6.929v.929c-3.388-.487-6-3.408-6-6.929zm-8 11.101v2.899c0 2.415-1.721 4.435-4 4.899v-2.899c0-2.415 1.721-4.435 4-4.899zm-10 2.899v-2.899c2.279.464 4 2.485 4 4.899v2.899c-2.279-.464-4-2.484-4-4.899zm46 43h-50v-20h50zm4-4h-2v-17c0-.552-.448-1-1-1h-47v-2h50zm4-6h-2v-15c0-.552-.448-1-1-1h-47v-4h50z"/><path d="m6 59h12v-2h-11v-12h11v-2h-12c-.552 0-1 .448-1 1v14c0 .552.448 1 1 1z"/><path d="m51 58v-14c0-.552-.448-1-1-1h-12v2h11v12h-11v2h12c.552 0 1-.448 1-1z"/><path d="m46 54c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1h-6c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1zm-5-4h4v2h-4z"/><path d="m10 48c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h6c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1zm5 4h-4v-2h4z"/></g></svg>
-                        </div>
-                        <div class="icon-info-text">
-                            <h5 class="ad-title">Tổng doanh thu</h5>
-                            <h4 class="ad-card-title">10k</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
         <!-- Revanue Status Start -->
         <div class="row">
@@ -251,7 +239,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="card chart-card">
                     <div class="card-header">
-                        <h4>Newest Orders</h4>
+                        <h4>Top 5 đơn hàng mới nhất</h4>
                     </div>
                     <div class="card-body pb-4">
                         <div class="chart-holder">
@@ -259,224 +247,49 @@
                                 <table class="table table-styled mb-0">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                
+                                            <th>  
                                             </th>
-                                            <th>Order ID</th>
-                                            <th>Billing Name</th>
-                                            <th>Date</th>
-                                            <th>Total</th>
-                                            <th>Payment Status</th>
-                                            <th>Payment Method</th>
-                                            <th>View Details</th>
+                                            <th>#</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Tổng</th>
+                                            <th>Trạng thái</th>
+                                            
+                                            <th>Xem chi tiết</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($topOrder as $key => $value )
+                                            
+                                        
                                         <tr>
-                                            <td>
-                                                
+                                            <td>   
                                             </td>
-                                            <td>#JH2033</td>
+                                            <td>{{ ++$key }}</td>
                                             <td>
                                                 <span class="img-thumb ">
-                                                    <img src="public/assets/images/table/1.jpg" alt=" ">
-                                                    <span class="ml-2 ">Emily Arnold</span>
+                                                    {{-- <img src="public/assets/images/table/1.jpg" alt=" "> --}}
+                                                    <span class="ml-2 ">{{ $value->name_user }}</span>
                                                 </span>
                                             </td>
-                                            <td>22/06/2022</td>
-                                            <td>$600</td>
+                                            <td>{{ date("d/m/Y",strtotime($value->date_order)) }}</td>
+                                            <td>{{ number_format($value->total_amount) }} <b>VNĐ</b></td>
                                             <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">Pending</label>
+                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">{{ $value->status==0 ? "Chưa xác nhận" : ($value->status == 1 ? "Đang vận chuyển" : "Đã nhận") }}</label>
                                             </td>
+                                            
                                             <td>
-                                                <span class="img-thumb">
-                                                    <i class="fab fa-cc-paypal"></i>
-                                                    <span class="ml-2">Paypal</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">View Detail</label>
+                                                <a href="#"><label class="mb-0 badge badge-primary" title="" data-original-title="Pending">Chi tiết</label></a>
                                             </td>
                                             <td class="relative">
-                                                <a class="action-btn " href="javascript:void(0); ">
-                                                    <svg class="default-size "  viewBox="0 0 341.333 341.333 ">
-                                                        <g>
-                                                            <g>
-                                                                <g>
-                                                                    <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
-                                                                    <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
-                                                                    <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </svg>
+                                                <a class="btn btn-primary" href="">
+                                                    Xác nhận đơn hàng
                                                 </a>
-                                                <div class="action-option ">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="products"><i class="far fa-edit mr-2 "></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href=""><i class="far fa-trash-alt mr-2 "></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
                                                 
                                             </td>
-                                            <td>#MK4433</td>
-                                            <td>
-                                                <span class="img-thumb ">
-                                                    <img src="public/assets/images/table/4.jpg" alt=" ">
-                                                    <span class="ml-2 ">Mark Doe</span>
-                                                </span>
-                                            </td>
-                                            <td>14/07/2022</td>
-                                            <td>$700</td>
-                                            <td>
-                                                <label class="mb-0 badge badge-success" title="" data-original-title="Pending">Success</label>
-                                            </td>
-                                            <td>
-                                                <span class="img-thumb">
-                                                    <i class="fab fa-cc-visa"></i>
-                                                    <span class="ml-2">Visa</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">View Detail</label>
-                                            </td>
-                                            <td class="relative">
-                                                <a class="action-btn " href="javascript:void(0); ">
-                                                    <svg class="default-size "  viewBox="0 0 341.333 341.333 ">
-                                                        <g>
-                                                            <g>
-                                                                <g>
-                                                                    <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
-                                                                    <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
-                                                                    <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-                                                </a>
-                                                <div class="action-option">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="javascript:void(0);"><i class="far fa-edit mr-2 "></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0);"><i class="far fa-trash-alt mr-2 "></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                
-                                            </td>
-                                            <td>#MD4578</td>
-                                            <td>
-                                                <span class="img-thumb">
-                                                    <img src="public/assets/images/table/7.jpg" alt=" ">
-                                                    <span class="ml-2 ">Mark Smith</span>
-                                                </span>
-                                            </td>
-                                            <td>28/08/2022</td>
-                                            <td>$800</td>
-                                            <td>
-                                                <label class="mb-0 badge badge-danger" title="" data-original-title="Pending">Cancel</label>
-                                            </td>
-                                            <td>
-                                                <span class="img-thumb">
-                                                    <i class="fas fa-credit-card"></i>
-                                                    <span class="ml-2">Credit Card</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">View Detail</label>
-                                            </td>
-                                            <td class="relative">
-                                                <a class="action-btn " href="javascript:void(0); ">
-                                                    <svg class="default-size "  viewBox="0 0 341.333 341.333 ">
-                                                        <g>
-                                                            <g>
-                                                                <g>
-                                                                    <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
-                                                                    <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
-                                                                    <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-                                                </a>
-                                                <div class="action-option ">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="javascript:void(0); "><i class="far fa-edit mr-2 "></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0); "><i class="far fa-trash-alt mr-2 "></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                
-                                            </td>
-                                            <td>#DD1048</td>
-                                            <td>
-                                                <span class="img-thumb ">
-                                                    <img src="public/assets/images/table/1.jpg" alt=" ">
-                                                    <span class="ml-2 ">Mike Wood</span>
-                                                </span>
-                                            </td>
-                                            <td>13/04/2022</td>
-                                            <td>$880</td>
-                                            <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">Pending</label>
-                                            </td>
-                                            <td>
-                                                <span class="img-thumb">
-                                                    <i class="fab fa-cc-mastercard"></i>
-                                                    <span class="ml-2">Mastercard</span>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">View Detail</label>
-                                            </td>
-                                            <td class="relative">
-                                                <a class="action-btn " href="javascript:void(0); ">
-                                                    <svg class="default-size "  viewBox="0 0 341.333 341.333 ">
-                                                        <g>
-                                                            <g>
-                                                                <g>
-                                                                    <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
-                                                                    <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
-                                                                    <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-                                                </a>
-                                                <div class="action-option ">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="javascript:void(0); "><i class="far fa-edit mr-2 "></i>Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:void(0); "><i class="far fa-trash-alt mr-2 "></i>Delete</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         
                                     </tbody>
                                 </table>

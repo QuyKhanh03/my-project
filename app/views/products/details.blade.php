@@ -83,20 +83,21 @@
                                     </div>
                                     <div class="ltn__product-details-menu-2">
                                         <ul>
-                                            <form action="#">
+                                            <form action="{{ url('add-to-cart?id='.$product->id_product) }}" method="POST">
                                             <li>
                                                 <div class="cart-plus-minus">
                                                     <input type="number" min="1" value="1" max="{{ $product->quantity_total }}"  name="qtybutton" class="cart-plus-minus-box">
+                                                    
                                                 </div>
                                             </li>
                                             <li>
                                             
-                                                <button class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
+                                                <button name="btn" href=""  {{ $product->quantity_total <= 0 ? "disabled" : "" }} class="theme-btn-1 btn btn-effect-1" title="Add to Cart" >
                                                     <i class="fas fa-shopping-cart"></i>
                                                     <span>Thêm vào giỏi hàng</span>
                                                 </button>  
                                             </li>
-                                            </form>
+                                        </form>
                                         </ul>
                                     </div>
                                     <div class="ltn__product-details-menu-3">

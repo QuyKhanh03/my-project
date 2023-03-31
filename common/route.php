@@ -42,7 +42,16 @@ $router->get("logout",[App\Controllers\UserController::class, 'logout']);
 $router->get("account",[App\Controllers\UserController::class, 'profile']);
 $router->post("updateInfo",[\App\Controllers\UserController::class,'updateAccount']);
 //end
-
+//cart 
+$router->post("add-to-cart",[App\Controllers\CartController::class, 'addToCart']);
+$router->get("cart",[App\Controllers\CartController::class,'index']);
+$router->get("change-quantity",[App\Controllers\CartController::class,'changeQuantity']);
+$router->get("remove-item-cart/{id}",[App\Controllers\CartController::class,'removeItemCart']);
+$router->get("remove-cart/{id}",[App\Controllers\CartController::class,'removeCart']);
+$router->get("remove-all-cart",[App\Controllers\CartController::class,'removeAllCart']);
+//checkout 
+$router->get("checkout",[App\Controllers\CheckoutController::class, 'index']);
+$router->post("checkoutPost",[App\Controllers\CheckoutController::class, 'checkoutPost']);
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

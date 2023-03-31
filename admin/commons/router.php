@@ -47,6 +47,10 @@ $router->get("logout",[App\Controllers\UserController::class, 'logout']);
 //end
 //customer start
 $router->get("customer",[App\Controllers\UserController::class, 'index']);
+
+//end
+//order start
+$router->get("orders",[App\Controllers\OrderController::class, 'index']);
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

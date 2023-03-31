@@ -78,7 +78,7 @@ class UserController extends BaseController
                         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                         $mail->SMTPAuth = true;                               // Enable SMTP authentication
                         $mail->Username = 'phamngockhanh29703@gmail.com';                 // SMTP username
-                        $mail->Password = 'gcykqtleorouyifc';                           // SMTP password
+                        $mail->Password = 'iadvhwxqkzbqeino';                           // SMTP password
                         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                         $mail->Port = 587;                                    // TCP port to connect to
                         //Recipients
@@ -135,11 +135,12 @@ class UserController extends BaseController
         if(isset($_SESSION["auth"])) {
             $id = $_SESSION["auth"]->id_user;
             $auth = $this->user->getUserById($id);
+            $orders = $this->user->getOrderById($id);
         }
         $title = "Thông tin cá nhân";
         $title_banner = "Thông tin cá nhân";
-       
-        $this->render("customer.info", compact('title', 'title_banner','auth'));
+        
+        $this->render("customer.info", compact('title', 'title_banner','auth','orders'));
     }
     //update account
     public function updateAccount() {

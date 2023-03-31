@@ -34,4 +34,10 @@ class User extends BaseModel {
         $this->setQuery($sql);
         return $this->loadRow(array($id));
     }
+    // get order by user id
+    public function getOrderById($id) {
+        $sql = "SELECT * FROM orders where user_id = ?";
+        $this->setQuery($sql);
+        return $this->loadAllRows(array($id));
+    }
 }

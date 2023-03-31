@@ -16,7 +16,7 @@
                                         
                                         <a data-toggle="tab" href="#liton_tab_1_4">Địa Chỉ <i class="fas fa-map-marker-alt"></i></a>
                                         <a data-toggle="tab" href="#liton_tab_1_5">Quyền Riêng Tư <i class="fas fa-user"></i></a>
-                                        <a href="{{ url('logout') }}">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                        <a href="{{ url('logout') }}">Đăng xuất <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -34,35 +34,33 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Order</th>
-                                                            <th>Date</th>
-                                                            <th>Status</th>
-                                                            <th>Total</th>
-                                                            <th>Action</th>
+                                                            <th>#</th>
+                                                            <th>Ngày đặt</th>
+                                                            <th>Trạng thái</th>
+                                                            <th>Tổng tiền</th>
+                                                            <th>Hành động</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach ($orders as $key => $value)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Jun 22, 2019</td>
-                                                            <td>Pending</td>
-                                                            <td>$3000</td>
-                                                            <td><a href="cart.html">View</a></td>
+                                                            <td>{{ ++$key }}</td>
+                                                            <td>{{ date("d/m/Y",strtotime($value->date_order)) }}</td>
+                                                            <td>
+                                                                @if($value->status==0)
+                                                                <span class="badge badge-warning">Đang chờ xử lý</span>
+                                                                @elseif($value->status==1)
+                                                                <span class="badge badge-info">Đang giao hàng</span>
+                                                                @elseif($value->status==2)
+                                                                <span class="badge badge-success">Đã nhận</span>
+                                                                @else
+                                                                <span class="badge badge-danger">Đã hủy</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ $value->total_amount }}</td>
+                                                            <td><a href="">Xem</a></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Nov 22, 2019</td>
-                                                            <td>Approved</td>
-                                                            <td>$200</td>
-                                                            <td><a href="cart.html">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>Jan 12, 2020</td>
-                                                            <td>On Hold</td>
-                                                            <td>$990</td>
-                                                            <td><a href="cart.html">View</a></td>
-                                                        </tr>
+                                                        @endforeach  
                                                     </tbody>
                                                 </table>
                                             </div>
