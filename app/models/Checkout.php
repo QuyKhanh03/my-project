@@ -22,7 +22,7 @@ class Checkout extends BaseModel {
     }
     //get id order by user id
     public function getIdOrderByUserId($user_id) {
-        $sql = "SELECT id_order FROM orders WHERE user_id = ? ";
+        $sql = "SELECT id_order FROM orders WHERE user_id = ? order by date_order desc limit 1";
         $this->setQuery($sql);
         return $this->loadRow(array($user_id));
     }

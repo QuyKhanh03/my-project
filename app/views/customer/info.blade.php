@@ -38,6 +38,7 @@
                                                             <th>Ngày đặt</th>
                                                             <th>Trạng thái</th>
                                                             <th>Tổng tiền</th>
+                                                            <th>Chi tiết</th>
                                                             <th>Hành động</th>
                                                         </tr>
                                                     </thead>
@@ -52,13 +53,34 @@
                                                                 @elseif($value->status==1)
                                                                 <span class="badge badge-info">Đang giao hàng</span>
                                                                 @elseif($value->status==2)
-                                                                <span class="badge badge-success">Đã nhận</span>
-                                                                @else
+                                                                <span class="badge badge-success">Đã nhận được hàng</span>
+                                                                @elseif($value->status==3)
                                                                 <span class="badge badge-danger">Đã hủy</span>
+                                                                @else 
+                                                                <span class="badge badge-danger"></span>
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $value->total_amount }}</td>
-                                                            <td><a href="">Xem</a></td>
+                                                            <td>{{ number_format($value->total_amount) }} <b>VNĐ</b></td>
+                                                            <td><a href="{{ url('order-detail/'.$value->id_order) }}">Xem</a></td>
+                                                            <td>
+                                                                @if($value->status==0)
+                                                                <form action="{{ url('update-status') }}" method="POST">
+                                                                    <input type="hidden" name="status" value="3">
+                                                                    <input type="hidden" name="id_order" value="{{ $value->id_order }}">
+                                                                    <button name="btn" class="btn btn-danger">Hủy đơn hàng</button>
+                                                                </form>
+                                                                @elseif($value->status==1)
+                                                                <form action="{{ url('update-status') }}" method="POST">
+                                                                    <input type="hidden" name="status" value="2">
+                                                                    <input type="hidden" name="id_order" value="{{ $value->id_order }}">
+                                                                    <button name="btn" class="btn btn-danger">Đã nhận</button>
+                                                                </form>
+                                                                @elseif($value->status == 2)
+                                                                <a href="">Mua lại</a>
+                                                                @else
+
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                         @endforeach  
                                                     </tbody>

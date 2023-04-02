@@ -42,14 +42,14 @@ class CheckoutController extends BaseController
                     $mail->isSMTP();                                      // Set mailer to use SMTP
                     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'phamngockhanh29703@gmail.com';                 // SMTP username
-                    $mail->Password = 'iadvhwxqkzbqeino';                           // SMTP password
+                    $mail->Username = 'khanhpnph23703@fpt.edu.vn';                 // SMTP username
+                    $mail->Password = 'yomoxmhnhwzoskbb';                           // SMTP password
                     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                     $mail->Port = 587;                                    // TCP port to connect to
                     //Recipients
-                    $mail->setFrom('phamngockhanh29703@gmail.com', ' Broccoli');
+                    $mail->setFrom('khanhpnph23703@fpt.edu.vn', ' Broccoli');
                     $mail->addAddress($email, $name_user);           // Name is optional
-                    $mail->addCC('phamngockhanh29703@gmail.com');
+                    $mail->addCC('khanhpnph23703@fpt.edu.vn');
                     //Content
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->Subject = 'Broccoli xin chào !!!';
@@ -65,10 +65,8 @@ class CheckoutController extends BaseController
                     foreach ($_SESSION["carts"] as $key => $value) {
                         $product_id = $value["id"];
                         $quantity = $value["quantity"];
-                        echo $product_id . "<br>";
-                        echo $quantity;
                         $price = $value["price"];
-                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $quantity, $price);
+                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $price, $quantity);
                     }
 
                     unset($_SESSION["carts"]);
@@ -96,7 +94,7 @@ class CheckoutController extends BaseController
                         $product_id = $value["id"];
                         $quantity = $value["quantity"];
                         $price = $value["price"];
-                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $quantity, $price);
+                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $price, $quantity);
                     }
                     $mail = new PHPMailer(true);
                     $mail->CharSet = "UTF-8";
@@ -105,14 +103,14 @@ class CheckoutController extends BaseController
                     $mail->isSMTP();                                      // Set mailer to use SMTP
                     $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'phamngockhanh29703@gmail.com';                 // SMTP username
-                    $mail->Password = 'iadvhwxqkzbqeino';                           // SMTP password
+                    $mail->Username = 'khanhpnph23703@fpt.edu.vn';                 // SMTP username
+                    $mail->Password = 'yomoxmhnhwzoskbb';                           // SMTP password
                     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                     $mail->Port = 587;                                    // TCP port to connect to
                     //Recipients                      
-                    $mail->setFrom('phamngockhanh29703@gmail.com', ' Broccoli');
+                    $mail->setFrom('khanhpnph23703@fpt.edu.vn', ' Broccoli');
                     $mail->addAddress($email, $name_user);           // Name is optional
-                    $mail->addCC('phamngockhanh29703@gmail.com');
+                    $mail->addCC('khanhpnph23703@fpt.edu.vn');
                     //Content
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->Subject = 'Broccoli xin chào !!!';

@@ -276,17 +276,34 @@
                                             <td>{{ date("d/m/Y",strtotime($value->date_order)) }}</td>
                                             <td>{{ number_format($value->total_amount) }} <b>VNĐ</b></td>
                                             <td>
-                                                <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">{{ $value->status==0 ? "Chưa xác nhận" : ($value->status == 1 ? "Đang vận chuyển" : "Đã nhận") }}</label>
+                                                @if($value->status==0)
+                                                <span class="badge badge-warning">Đang chờ xử lý</span>
+                                                @elseif($value->status==1)
+                                                <span class="badge badge-info">Đang vận chuyển</span>
+                                                @elseif($value->status==2)
+                                                <span class="badge badge-success">Đã nhận được hàng</span>
+                                                @elseif($value->status==3)
+                                                <span class="badge badge-danger">Đã hủy</span>
+                                                @else 
+                                                <span class="badge badge-danger"></span>
+                                                @endif
                                             </td>
                                             
                                             <td>
-                                                <a href="#"><label class="mb-0 badge badge-primary" title="" data-original-title="Pending">Chi tiết</label></a>
+                                                <a class="text-primary" href="{{ router('order-detail/'.$value->id_order) }}">Xem</a>
                                             </td>
                                             <td class="relative">
-                                                <a class="btn btn-primary" href="">
-                                                    Xác nhận đơn hàng
-                                                </a>
-                                                
+                                               
+                                                <form action="{{ router('update-status') }}" method="POST">
+                                                    <input type="hidden" name="id_order" value="{{ $value->id_order }}">
+                                                    @if($value->status == 0)
+                                                    <button class="btn btn-primary {{ $value->status == 1 ? "disabled" : "" }}" name="btn" >Xác nhận đơn hàng</button>
+                                                    @else 
+                                                        #
+                                                    @endif
+                                                </form>     
+                                               
+
                                             </td>
                                         </tr>
                                         @endforeach

@@ -77,14 +77,14 @@ class UserController extends BaseController
                         $mail->isSMTP();                                      // Set mailer to use SMTP
                         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                        $mail->Username = 'phamngockhanh29703@gmail.com';                 // SMTP username
-                        $mail->Password = 'iadvhwxqkzbqeino';                           // SMTP password
+                        $mail->Username = 'khanhpnph23703@fpt.edu.vn';                 // SMTP username
+                        $mail->Password = 'yomoxmhnhwzoskbb';                           // SMTP password
                         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                         $mail->Port = 587;                                    // TCP port to connect to
                         //Recipients
-                        $mail->setFrom('phamngockhanh29703@gmail.com', ' Broccoli');
+                        $mail->setFrom('khanhpnph23703@fpt.edu.vn', ' Broccoli');
                         $mail->addAddress($email, $name_user);           // Name is optional
-                        $mail->addCC('phamngockhanh29703@gmail.com');
+                        $mail->addCC('khanhpnph23703@fpt.edu.vn');
                         //Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Chào mừng bạn đến với Broccoli !!!';
@@ -136,6 +136,8 @@ class UserController extends BaseController
             $id = $_SESSION["auth"]->id_user;
             $auth = $this->user->getUserById($id);
             $orders = $this->user->getOrderById($id);
+        }else {
+            redirect("errors","Bạn chưa đăng nhập","login");
         }
         $title = "Thông tin cá nhân";
         $title_banner = "Thông tin cá nhân";
@@ -185,5 +187,31 @@ class UserController extends BaseController
         }else {
             redirect("errors", "Bạn chưa đăng nhập", "login");
         }
+    }
+    //update status order
+    public function updateStatusOrder() {
+        if(isset($_SESSION["auth"])) {
+            if(isset($_POST["btn"])) {
+                $id = $_POST["id_order"];
+                $status = $_POST["status"];
+                $result = $this->user->updateStatus($id,$status);
+                if($result) {
+                    redirect("success","Cập nhật thành công","account");
+                }
+            }
+        }else {
+            redirect("errors", "Bạn chưa đăng nhập", "login");
+        }
+    }
+    public function orderDetail($id) {
+        if(isset($_SESSION["auth"])) {
+            // $order = $this->user->getOrderById($id);
+            $order_detail = $this->user->getOrderDetailById($id);
+        }else {
+            redirect("errors","Bạn chưa đăng nhập","login");
+        }
+        $title = "Thông tin đơn hàng";
+        $title_banner = "Thông tin đơn hàng";
+        $this->render("customer.order_detail", compact('title', 'title_banner','order_detail'));
     }
 }

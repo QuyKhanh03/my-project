@@ -1,111 +1,92 @@
 <?php $_shouldextend[1]=1; ?>
 <?php $this->startSection('content'); ?>
+
 <div class="row">
  <!-- Styled Table Card-->
  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
  <div class="card table-card">
  <div class="card-header pb-0">
- <h4>Orders List</h4>
+ <div class="row">
+ <div class="col">
+ <span>Danh sách đơn hàng</span>
  </div>
+ <?php if(isset($_SESSION["success"]) && isset($_GET["msg"])): ?>
+ <div class="alert alert-success mt-4">
+ <strong><?php echo \htmlentities($_SESSION["success"]??'', ENT_QUOTES, 'UTF-8', false); ?> !!!</strong> 
+ </div>
+
+ <?php endif; ?>
+ <?php /* <div class="col"><a href="<?php echo \htmlentities(router('create-order')??'', ENT_QUOTES, 'UTF-8', false); ?>" class="btn btn-primary">Tạo đơn hàng</a></div> */ ?>
+ <?php /* </div> */ ?>
+ </div>
+ 
  <div class="card-body">
- <div class="chart-holder">
- <div class="table-responsive">
- <table class="table table-styled mb-0">
+ <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
  <thead>
  <tr>
- <th>
- <div class="checkbox">
- <input id="checkbox1" type="checkbox">
- <label for="checkbox1"></label>
- </div>
+ <th>  
  </th>
- <th>Order ID</th>
- <th>Billing Name</th>
- <th>Date</th>
- <th>Total</th>
- <th>Payment Status</th>
- <th>Payment Method</th>
- <th>View Details</th>
+ <th>#</th>
+ <th>Tên khách hàng</th>
+ <th>Ngày đặt</th>
+ <th>Tổng</th>
+ <th>Trạng thái</th>
+ <th>Xem chi tiết</th>
  <th>Action</th>
  </tr>
  </thead>
  <tbody>
+ <?php $__currentLoopData = $orders; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $value): $loop = $this->incrementLoopIndices();  ?>
+ 
+ 
  <tr>
- <td>
- <div class="checkbox">
- <input id="checkbox2" type="checkbox">
- <label for="checkbox2"></label>
- </div>
+ <td>   
  </td>
- <td>#JH2033</td>
+ <td><?php echo \htmlentities(++$key??'', ENT_QUOTES, 'UTF-8', false); ?></td>
  <td>
  <span class="img-thumb ">
- <img src="assets/images/table/1.jpg" alt=" ">
- <span class="ml-2 ">Emily Arnold</span>
+ <?php /* <img src="public/assets/images/table/1.jpg" alt=" "> */ ?>
+ <span class="ml-2 "><?php echo \htmlentities($value->name_user??'', ENT_QUOTES, 'UTF-8', false); ?></span>
  </span>
  </td>
- <td>22/06/2022</td>
- <td>$600</td>
+ <td><?php echo \htmlentities(date("d/m/Y",strtotime($value->date_order))??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($value->total_amount)??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></td>
  <td>
- <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">Pending</label>
+ <?php if($value->status==0): ?>
+ <span class="badge badge-warning">Đang chờ xử lý</span>
+ <?php elseif($value->status==1): ?>
+ <span class="badge badge-info">Đang vận chuyển</span>
+ <?php elseif($value->status==2): ?>
+ <span class="badge badge-success">Đã nhận được hàng</span>
+ <?php elseif($value->status==3): ?>
+ <span class="badge badge-danger">Đã hủy</span>
+ <?php else: ?> 
+ <span class="badge badge-danger"></span>
+ <?php endif; ?>
  </td>
+ 
  <td>
- <span class="img-thumb">
- <i class="fab fa-cc-paypal"></i>
- <span class="ml-2">Paypal</span>
- </span>
- </td>
- <td>
- <label class="mb-0 badge badge-primary" title="" data-original-title="Pending">View Detail</label>
+ <a href="<?php echo \htmlentities(router('order-detail/'.$value->id_order)??'', ENT_QUOTES, 'UTF-8', false); ?>" class="text-primary">Xem</a>
  </td>
  <td class="relative">
- <a class="action-btn " href="javascript:void(0); ">
- <svg class="default-size " viewBox="0 0 341.333 341.333 ">
- <g>
- <g>
- <g>
- <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>
- <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>
- <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>
- </g>
- </g>
- </g>
- </svg>
- </a>
- <div class="action-option ">
- <ul>
- <li>
- <a href="javascript:void(0); "><i class="far fa-edit mr-2 "></i>Edit</a>
- </li>
- <li>
- <a href="javascript:void(0); "><i class="far fa-trash-alt mr-2 "></i>Delete</a>
- </li>
- </ul>
- </div>
+ 
+ <form action="<?php echo \htmlentities(router('update-status')??'', ENT_QUOTES, 'UTF-8', false); ?>" method="POST">
+ <input type="hidden" name="id_order" value="<?php echo \htmlentities($value->id_order??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ <?php if($value->status == 0): ?>
+ <button class="btn btn-primary <?php echo \htmlentities($value->status == 1 ? "disabled" : ""??'', ENT_QUOTES, 'UTF-8', false); ?>" name="btn" >Xác nhận đơn hàng</button>
+ <?php else: ?> 
+ #
+ <?php endif; ?>
+ </form>     
+ 
+
  </td>
  </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  
  </tbody>
  </table>
- </div>
- </div>
- <div class="text-right pt-2">
- <nav class="d-inline-block">
- <ul class="pagination mb-0 ">
- <li class="page-item disabled">
- <a class="page-link" href="javascript:void(0);" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
- </li>
- <li class="page-item active "><a class="page-link " href="javascript:void(0); ">1</a></li>
- <li class="page-item ">
- <a class="page-link " href="javascript:void(0); ">2</a>
- </li>
- <li class="page-item "><a class="page-link " href="javascript:void(0); ">3</a></li>
- <li class="page-item ">
- <a class="page-link " href="javascript:void(0); "><i class="fas fa-chevron-right "></i></a>
- </li>
- </ul>
- </nav>
- </div>
  </div>
  </div>
  </div>

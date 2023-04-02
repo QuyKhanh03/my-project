@@ -1,0 +1,80 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<?php /* <?php 
+ 
+ echo "<pre>";
+ print_r($orders);
+ ?> */ ?>
+<div class="row">
+ <div class="col-md-12">
+ <div class="card">
+ <div class="card-body">
+ 
+ <div class="tab-content default-tab" id="tab1">
+
+ <fieldset>
+ <strong>
+ <p class="mb-2">
+ <span  >Ngày lập hóa đơn: <?php echo \htmlentities(date("d/m/Y", strtotime($info->date_order))??'', ENT_QUOTES, 'UTF-8', false); ?> </span>
+ </p>
+ <p>
+ <label>Trị giá:  <?php echo \htmlentities(number_format($info->total_amount)??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></label>
+ </p>
+ <p>
+ <label>Họ tên khách hàng : <?php echo \htmlentities($info->name_user??'', ENT_QUOTES, 'UTF-8', false); ?></label>
+ </p>
+ <p>
+ <label>Địa chỉ: <?php echo \htmlentities($info->address??'', ENT_QUOTES, 'UTF-8', false); ?></label>
+ <label><span style="margin-left:20px">Điện thoại: <?php echo \htmlentities($info->phone??'', ENT_QUOTES, 'UTF-8', false); ?></span></label>
+ <label><span style="margin-left:20px">Email: <?php echo \htmlentities($info->email??'', ENT_QUOTES, 'UTF-8', false); ?></span></label>
+ </p>
+ <strong>
+ </fieldset>
+ 
+ <table class="table" border="1">
+ <thead class="table-dark">
+ <tr>
+ <td>Tên sản phẩm</td>
+ <td>Ảnh sản phẩm</td>
+ <td>Số lượng</td>
+ <td>Đơn giá</td>
+ <td>Thành tiền</td>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $tong = 0; ?>
+ <?php $__currentLoopData = $orders; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $item): $loop = $this->incrementLoopIndices();  ?>
+ <?php $tong += $item->price_product * $item->quantity; ?>
+ <tr>
+ <td><?php echo \htmlentities($item->name_product??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><img src="<?php echo \htmlentities(router('../public/img/product/'.$item->image)??'', ENT_QUOTES, 'UTF-8', false); ?>" width="100px" height="100px"></td>
+ <td><?php echo \htmlentities($item->quantity??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities(number_format($item->price_product)??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></td>
+ <td><?php echo \htmlentities(number_format($item->price_product * $item->quantity)??'', ENT_QUOTES, 'UTF-8', false); ?> <b>VNĐ</b></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ <tfoot>
+ <tr>
+ <td colspan="4">
+ <p><input class="button print" type="button" value="In hóa đơn " name="btnIn" onclick="window.print()" /></p>
+ 
+ </td>
+ <td colspan="2">
+ <div class="pagination">
+ <h4>Tổng thành tiền: <?php echo number_format($tong) ?> <b>VNĐ</b></h4>
+ </div>
+ 
+ </td>
+ </tr>
+ </tfoot>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('templates.layout'); } ?>
