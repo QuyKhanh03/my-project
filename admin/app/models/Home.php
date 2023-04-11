@@ -123,7 +123,7 @@ class Home extends BaseModel {
     }
     //lây ra thông tin sản phẩm theo id_order
     public function getProductByIdOrder($id_order) {
-        $sql = "SELECT order_details.quantity,order_details.product_price,products.name_product
+        $sql = "SELECT order_details.quantity,products.name_product,products.price_product
         FROM order_details 
         INNER JOIN products ON order_details.product_id = products.id_product
         WHERE order_details.order_id = ?";

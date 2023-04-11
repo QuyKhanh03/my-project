@@ -16,6 +16,8 @@
  <meta name="keywords" content="">
  <meta name="author" content="">
  <meta name="MobileOptimized" content="320">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
  <!--Start Style -->
  <?php echo $this->runChild('templates.styleCss'); ?>
 </head>
@@ -250,7 +252,11 @@
  <!-- Script Start -->
 	<?php echo $this->runChild('templates.mainJs'); ?>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script>
+ $('select').selectpicker();
 	$(document).ready(function() {
  $('#example').DataTable();
 	} );

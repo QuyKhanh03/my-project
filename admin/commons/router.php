@@ -52,8 +52,8 @@ $router->get("customer",[App\Controllers\UserController::class, 'index']);
 //order start
 $router->get("orders",[App\Controllers\OrderController::class, 'index']);
 $router->get("order-detail/{id}",[App\Controllers\OrderController::class, 'detail']);
-// $router->get("create-order",[App\Controllers\OrderController::class, 'showFormAdd']);
-// $router->post("create-order",[App\Controllers\OrderController::class, 'formAddPost']);
+$router->get("create-order",[App\Controllers\OrderController::class, 'showFormAdd']);
+$router->post("create-order-post",[App\Controllers\OrderController::class, 'formAddPost']);
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 

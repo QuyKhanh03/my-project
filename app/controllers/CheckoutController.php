@@ -65,8 +65,8 @@ class CheckoutController extends BaseController
                     foreach ($_SESSION["carts"] as $key => $value) {
                         $product_id = $value["id"];
                         $quantity = $value["quantity"];
-                        $price = $value["price"];
-                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $price, $quantity);
+                        
+                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $quantity);
                     }
 
                     unset($_SESSION["carts"]);
@@ -87,14 +87,17 @@ class CheckoutController extends BaseController
                     $date_current = date("Y-m-d H:i:s");
                     $password = md5($phone);
                     $this->checkout->insertUser($name_user, $email, $phone, $address, $password, 2);
+
                     $user_id = $this->checkout->getLastIdUser();
+
                     $this->checkout->insertOrder($user_id->id_user, $date_current, $total_amount, $note, 0);
+
                     $order_id = $this->checkout->getIdOrderByUserId($user_id->id_user);
+                    
                     foreach ($_SESSION["carts"] as $key => $value) {
                         $product_id = $value["id"];
                         $quantity = $value["quantity"];
-                        $price = $value["price"];
-                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $price, $quantity);
+                        $this->checkout->insertOrderDetail($order_id->id_order, $product_id, $quantity);
                     }
                     $mail = new PHPMailer(true);
                     $mail->CharSet = "UTF-8";

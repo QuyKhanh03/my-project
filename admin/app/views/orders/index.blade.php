@@ -16,8 +16,8 @@
                 </div>
 
                 @endif
-                {{-- <div class="col"><a href="{{ router('create-order') }}" class="btn btn-primary">Tạo đơn hàng</a></div> --}}
-                {{-- </div> --}}
+                <div class="col"><a href="{{ router('create-order') }}" class="btn btn-primary">Tạo đơn hàng</a></div>
+                </div>
             </div>
             
             <div class="card-body">

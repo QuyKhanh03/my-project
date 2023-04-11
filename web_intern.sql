@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 02, 2023 lúc 02:10 PM
+-- Thời gian đã tạo: Th4 11, 2023 lúc 02:18 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -77,8 +77,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `user_id`, `date_order`, `total_amount`, `note`, `status`) VALUES
-(9, 4, '2023-04-02 01:39:07', 85000, '', 0),
-(10, 4, '2023-04-02 06:40:34', 20000, '', 2);
+(9, 4, '2023-04-04 16:28:20', 85000, '', 1),
+(10, 4, '2023-04-02 06:40:34', 20000, '', 2),
+(14, 4, '2023-04-04 16:31:21', 35000, '', 1),
+(15, 6, '2023-04-04 16:32:15', 35000, 'demo sending email', 1),
+(16, 13, '2023-04-04 18:16:40', 50000, '', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +93,6 @@ CREATE TABLE `order_details` (
   `id_orderDetail` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -98,10 +100,15 @@ CREATE TABLE `order_details` (
 -- Đang đổ dữ liệu cho bảng `order_details`
 --
 
-INSERT INTO `order_details` (`id_orderDetail`, `order_id`, `product_id`, `product_price`, `quantity`) VALUES
-(14, 9, 1, 25000, 3),
-(15, 9, 2, 10000, 1),
-(16, 10, 2, 10000, 2);
+INSERT INTO `order_details` (`id_orderDetail`, `order_id`, `product_id`, `quantity`) VALUES
+(14, 9, 1, 3),
+(15, 9, 2, 1),
+(16, 10, 2, 2),
+(21, 14, 1, 1),
+(22, 14, 2, 1),
+(23, 15, 1, 1),
+(24, 15, 2, 1),
+(25, 16, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -174,7 +181,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `name_user`, `email`, `password`, `address`, `phone`, `avatar`, `role_id`) VALUES
 (1, 'Admin', 'Admin753@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '', '', 1),
 (3, 'Phạm Thế Trung', 'trung232k3@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Hà Nội', '12345', '', 2),
-(4, 'Khanh Pham', 'phamngockhanh29703@gmail.com', '0937d0af95e7b841c9c8639bb3e5de8b', 'Trịnh Văn Bô', '0981324706', '', 2);
+(4, 'Khanh Pham', 'phamngockhanh29703@gmail.com', '0937d0af95e7b841c9c8639bb3e5de8b', 'Trịnh Văn Bô', '0981324706', '', 2),
+(5, 'Khanh Pham', 'phamngockhanh29703@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Trịnh Văn Bô', '12345', '', 2),
+(6, 'Đặng Thị Yến', 'dangyen09122003@gmail.com', 'd0301fca584665cbde3ca23ab7886b28', 'Hà Nội', '098122288', '', 2),
+(13, 'Vũ Anh Bá', 'bavaph21184@fpt.edu.vn', '827ccb0eea8a706c4c34a16891f84e7b', 'Hà Nội', '12345', '', 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -242,13 +252,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id_orderDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_orderDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
@@ -266,7 +276,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

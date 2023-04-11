@@ -15,10 +15,10 @@ class Checkout extends BaseModel {
         return $this->execute(array($user_id,$date_order, $total_amount,$note,$status));
     }
     //insert order detail
-    public function insertOrderDetail($order_id, $product_id,$product_price, $quantity) {
-        $sql = "INSERT INTO order_details(order_id, product_id, product_price, quantity) VALUES(?, ?, ?, ?)";
+    public function insertOrderDetail($order_id, $product_id, $quantity) {
+        $sql = "INSERT INTO order_details(order_id, product_id, quantity) VALUES(?, ?, ?)";
         $this->setQuery($sql);
-        return $this->execute(array($order_id, $product_id,$product_price, $quantity));
+        return $this->execute(array($order_id, $product_id, $quantity));
     }
     //get id order by user id
     public function getIdOrderByUserId($user_id) {

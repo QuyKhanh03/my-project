@@ -85,11 +85,11 @@ class HomeController extends BaseController
                         <tr>
                             <td>' . $infoPrd->name_product . '</td>
                             <td>' . $infoPrd->quantity . '</td>
-                            <td>' . number_format($infoPrd->product_price) . ' VNĐ</td>
-                            <td>' . number_format($infoPrd->product_price * $infoPrd->quantity) . ' VNĐ</td>
+                            <td>' . number_format($infoPrd->price_product) . ' VNĐ</td>
+                            <td>' . number_format($infoPrd->price_product * $infoPrd->quantity) . ' VNĐ</td>
                         </tr>
                         .';
-                $total += ($infoPrd->product_price * $infoPrd->quantity);
+                $total += ($infoPrd->price_product * $infoPrd->quantity);
             }
             $body .= '<tr>
                         <td colspan="3" style="text-align: right;"><b>Tổng tiền :</b></td>
